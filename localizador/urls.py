@@ -1,6 +1,11 @@
 from django.urls import path
-from localizador.views import homepage
+from localizador import views
+
+# localizador:post
+app_name = 'localizador'
 
 urlpatterns = [
-    path('', homepage),
+    path('', views.homepage, name='homepage'),
+    path('posts/<int:id>', views.post, name='post'),
+
 ]
