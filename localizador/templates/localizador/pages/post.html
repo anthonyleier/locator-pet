@@ -1,9 +1,17 @@
 {% extends 'localizador/pages/base.html' %}
+{% load static %}
 
 {% block titulo %}
-<title>Preview</title>
+<title>{{ dado.titulo }}</title>
 {% endblock titulo %}
 
 {% block conteudo %}
-<h1>Preview</h1>
+<div class="bg-light border border-dark p-2 m-2 text-center">
+    <img src="{% static dado.imagem %}"/>
+    <h3>{{ dado.titulo }}</h3>
+    <p>{{ dado.descricao }}</p>
+    <p>{{ dado.autor }}</p>
+    <p>Criado em: {{ dado.created_at | date:'d/m/Y' }} às {{ dado.created_at | date:'H:i' }}</p>
+    <p>Atualizado em: {{ dado.updated_at | date:'d/m/Y' }} às {{ dado.updated_at | date:'H:i' }}</p>
+</div>
 {% endblock conteudo %}

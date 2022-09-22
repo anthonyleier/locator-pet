@@ -9,14 +9,15 @@ post_dados = {
     'autor': 'Anthony Cruz',
     'created_at': datetime.now(),
     'updated_at': datetime.now(),
-    'imagem': 'https://picsum.photos/400/250'
+    'imagem': 'localizador/img/golden.jfif'
 }
 
 
 def homepage(request):
-    dados = [post_dados, post_dados, post_dados]
+    dados = [post_dados, post_dados, post_dados, post_dados]
     return render(request, 'localizador/pages/homepage.html', context={'dados': dados})
 
 
 def post(request, id):
-    return render(request, 'localizador/pages/post.html')
+    dado = post_dados
+    return render(request, 'localizador/pages/post.html', context={'dado': dado})

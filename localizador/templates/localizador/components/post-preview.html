@@ -1,10 +1,12 @@
 {% load static %}
 
-<div class="border border-dark">
-    <img src="{% static dado.imagem %}"/>
-    <a href="{% url 'localizador:post' dado.id %}"><h3>{{ dado.titulo }}</h3>
+<div class="bg-light border border-dark p-2 m-2 text-center">
+    <a href="{% url 'localizador:post' dado.id %}">
+        <img src="{% static dado.imagem %}"/>
+        <h3>{{ dado.titulo }}</h3>
+    </a>
     <p>{{ dado.descricao }}</p>
     <p>{{ dado.autor }}</p>
-    <p>{{ dado.created_at | date:'d/m/Y' }} às {{ dado.created_at | date:'H:i' }}</p>
-    <p>{{ dado.updated_at | date:'d/m/Y' }} às {{ dado.updated_at | date:'H:i' }}</p>
+    <p>Criado em: {{ dado.created_at | date:'d/m/Y' }} às {{ dado.created_at | date:'H:i' }}</p>
+    <p>Atualizado em: {{ dado.updated_at | date:'d/m/Y' }} às {{ dado.updated_at | date:'H:i' }}</p>
 </div>
