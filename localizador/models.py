@@ -13,7 +13,7 @@ class Post(models.Model):
     imagem1 = models.ImageField(upload_to='localizador/upload/%Y/%m/%d/', null=True, blank=True)
     imagem2 = models.ImageField(upload_to='localizador/upload/%Y/%m/%d/', null=True, blank=True)
     imagem3 = models.ImageField(upload_to='localizador/upload/%Y/%m/%d/', null=True, blank=True)
-    autor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True),
+    autor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.titulo
