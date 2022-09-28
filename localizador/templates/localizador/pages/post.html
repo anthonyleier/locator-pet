@@ -1,6 +1,11 @@
-{% extends 'localizador/pages/base.html' %} {% load static %} {% block titulo %}
+{% extends 'localizador/pages/base.html' %}
+{% load static %}
+
+{% block titulo %}
 <title>{{ post.titulo }} | Localizador Pet</title>
-{% endblock titulo %} {% block conteudo %}
+{% endblock titulo %}
+
+{% block conteudo %}
 <div class="bg-light border border-dark p-2 m-2 text-center">
     <img src="{{ post.imagem1.url }}" class="capa" />
     <h3>{{ post.titulo }}</h3>

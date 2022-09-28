@@ -4,11 +4,13 @@
         <h3>{{ post.titulo }}</h3>
     </a>
     <p>{{ post.descricao }}</p>
+
     {% if post.autor.first_name %}
-    <p>{{ post.autor.first_name }} {{ post.autor.last_name }}</p>
-    {% else %}
-    <p>{{ post.autor.username }}</p>
+        <p>{{ post.autor.first_name }} {{ post.autor.last_name }}</p>
+        {% else %}
+        <p>{{ post.autor.username }}</p>
     {% endif %}
+
     <p>Criado em: {{ post.created_at | date:'d/m/Y' }} às {{ post.created_at | date:'H:i' }}</p>
     <p>Atualizado em: {{ post.updated_at | date:'d/m/Y' }} às {{ post.updated_at | date:'H:i' }}</p>
 </div>

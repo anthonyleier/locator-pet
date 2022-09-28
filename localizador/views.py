@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from localizador.models import Post
 
 
@@ -8,5 +8,5 @@ def homepage(request):
 
 
 def post(request, id):
-    post = Post.objects.get(id=id)
+    post = get_object_or_404(Post, pk=id, publicado=True)
     return render(request, 'localizador/pages/post.html', context={'post': post})

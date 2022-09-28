@@ -8,6 +8,8 @@
 <div class="h-100 d-flex flex-row">
 {% for post in posts %}
     {% include 'localizador/components/post-preview.html' %}
+    {% empty %}
+    <h1>Nenhum post cadastrado</h1>
 {% endfor %}
 </div>
 
