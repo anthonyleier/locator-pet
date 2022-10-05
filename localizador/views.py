@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from localizador.models import Post
@@ -19,4 +20,7 @@ def search(request):
     if not busca:
         raise Http404()
 
-    return render(request, 'localizador/pages/search.html', context={'busca': busca})
+    posts = Post.objects.filter(Q(Q(titulo__icontains=busca) | Q(descricao__icontains=busca)), publicado=True)
+    posts = posts.order_by('-id')
+
+    return render(request, 'localizador/pages/search.html', context={'busca': busca, 'posts': posts})
