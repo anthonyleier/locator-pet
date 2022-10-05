@@ -2,8 +2,17 @@
 {% load static %}
 
 {% block titulo %}
-<title>Buscar | Localizador Pet</title>
+<title>{{busca}} | Localizador Pet</title>
 {% endblock titulo %}
 
 {% block conteudo %}
+
+<div class="h-100 d-flex flex-row">
+{% for post in posts %}
+    {% include 'localizador/components/post-preview.html' %}
+    {% empty %}
+    <h1>Nenhum post encontrado</h1>
+{% endfor %}
+</div>
+
 {% endblock conteudo %}

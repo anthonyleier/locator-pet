@@ -14,9 +14,9 @@ def post(request, id):
 
 
 def search(request):
-    busca = request.GET.get('q')
+    busca = request.GET.get('q').strip()
 
     if not busca:
         raise Http404()
 
-    return render(request, 'localizador/pages/search.html')
+    return render(request, 'localizador/pages/search.html', context={'busca': busca})
