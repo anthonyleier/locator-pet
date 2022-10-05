@@ -18,7 +18,7 @@ class LocalizadorTestBase(TestCase):
         post = Post.objects.create(
             titulo='Labrador desaparecido',
             descricao='Labrador desaparecido ontem',
-            slug='labrador-desaparecido',
+            slug='labrador-desaparecido-testes',
             status='Encontrado',
             publicado=publicado,
             imagem1='localizador/upload/2022/09/23/chihuahua.jpg',

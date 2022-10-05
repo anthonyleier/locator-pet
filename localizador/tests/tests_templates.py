@@ -49,3 +49,11 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
         response = self.client.get(reverse('localizador:post', args=[post.id]))
         self.assertEqual(response.status_code, 404)
         self.limparPosts()
+
+    def test_search_template(self):
+        response = self.client.get(reverse('localizador:search') + '?q=labrador')
+        self.assertTemplateUsed(response, 'localizador/pages/search.html')
+
+    def test_search_404(self):
+        response = self.client.get(reverse('localizador:search'))
+        self.assertEqual(response.status_code, 404)

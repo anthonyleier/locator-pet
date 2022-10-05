@@ -11,3 +11,7 @@ class LocalizadorViewsTest(TestCase):
     def test_post_view(self):
         view = resolve(reverse('localizador:post', args=[2]))
         self.assertIs(view.func, views.post)
+
+    def test_search_view(self):
+        view = resolve(reverse('localizador:search'))
+        self.assertIs(view.func, views.search)
