@@ -57,3 +57,9 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
     def test_search_404(self):
         response = self.client.get(reverse('localizador:search'))
         self.assertEqual(response.status_code, 404)
+
+    def test_search_seguranca_template(self):
+        response = self.client.get(reverse('localizador:search') + '?q=<scriptmalicioso>')
+        self.assertIn('&lt;scriptmalicioso&gt;', response.content.decode('UTF8'))
+        self.assertNotIn('<scriptmalicioso>', response.content.decode('UTF8'))
+

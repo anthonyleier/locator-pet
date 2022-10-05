@@ -14,7 +14,7 @@ def post(request, id):
 
 
 def search(request):
-    busca = request.GET.get('q').strip()
+    busca = request.GET.get('q', '').strip()
 
     if not busca:
         raise Http404()
