@@ -1,5 +1,6 @@
 from localizador.models import Post
 from parameterized import parameterized
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from localizador.tests.tests_base import LocalizadorTestBase
 
@@ -38,7 +39,7 @@ class LocalizadorModelsTest(LocalizadorTestBase):
             self.post.full_clean()  # Validação dos campos
 
     def test_post_publicado(self):
-        autor = self.post.autor
+        autor = self.criarAutor()
         post = Post(
             titulo='Labrador desaparecido',
             descricao='Labrador desaparecido ontem',

@@ -63,3 +63,23 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
         self.assertIn('&lt;scriptmalicioso&gt;', response.content.decode('UTF8'))
         self.assertNotIn('<scriptmalicioso>', response.content.decode('UTF8'))
 
+    def test_search_titulo(self):
+        titulo1 = 'Este é o post 1'
+        titulo2 = 'Este é o post 2'
+
+        post1 = self.criarPost(titulo=titulo1, slug='um')
+        post2 = self.criarPost(titulo=titulo2, slug='dois')
+
+        searchURL = reverse('localizador:search')
+        response1 = self.client.get(f"{searchURL}?q={titulo1}")
+        response2 = self.client.get(f"{searchURL}?q={titulo2}")
+        responseTotal = self.client.get(f"{searchURL}?q=POST")
+
+        self.assertIn(post1, response1.context['posts'])
+        self.assertNotIn(post2, response1.context['posts'])
+
+        self.assertIn(post2, response2.context['posts'])
+        self.assertNotIn(post1, response2.context['posts'])
+
+        self.assertIn(post1, responseTotal.context['posts'])
+        self.assertIn(post2, responseTotal.context['posts'])

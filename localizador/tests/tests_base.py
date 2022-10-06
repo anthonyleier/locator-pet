@@ -13,12 +13,12 @@ class LocalizadorTestBase(TestCase):
             email="anthony.cruz@alfatransportes.com.br")
         return autor
 
-    def criarPost(self, publicado=True):
-        autor = self.criarAutor()
+    def criarPost(self, publicado=True, titulo='Labrador desaparecido', slug='labrador-desaparecido-testes'):
+        autor = User.objects.all().first()
         post = Post.objects.create(
-            titulo='Labrador desaparecido',
+            titulo=titulo,
             descricao='Labrador desaparecido ontem',
-            slug='labrador-desaparecido-testes',
+            slug=slug,
             status='Encontrado',
             publicado=publicado,
             imagem1='localizador/upload/2022/09/23/chihuahua.jpg',
