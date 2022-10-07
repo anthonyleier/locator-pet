@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from locator.models import Post
-from utils.paginacao import montarRangePaginacao, construirPaginacao
+from utils.pagination import montarRangePaginacao, construirPaginacao
 
 
 QUANTIDADE_POR_PAGINA = int(os.environ.get('QUANTIDADE_POR_PAGINA', 4))
