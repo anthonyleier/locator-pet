@@ -24,8 +24,8 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
         response = self.client.get(reverse('localizador:homepage'))
         html = response.content.decode('UTF8')
 
-        self.assertEqual(len(response.context['posts']), 1)
-        self.assertEqual(response.context['posts'].first().titulo, "Labrador desaparecido")
+        self.assertEqual(len(response.context['pagina']), 1)
+        self.assertEqual(response.context['pagina'][0].titulo, "Labrador desaparecido")
         self.assertIn('Labrador desaparecido', html)
         self.limparPosts()
 
@@ -75,11 +75,32 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
         response2 = self.client.get(f"{searchURL}?q={titulo2}")
         responseTotal = self.client.get(f"{searchURL}?q=POST")
 
-        self.assertIn(post1, response1.context['posts'])
-        self.assertNotIn(post2, response1.context['posts'])
+        self.assertIn(post1, response1.context['pagina'])
+        self.assertNotIn(post2, response1.context['pagina'])
 
-        self.assertIn(post2, response2.context['posts'])
-        self.assertNotIn(post1, response2.context['posts'])
+        self.assertIn(post2, response2.context['pagina'])
+        self.assertNotIn(post1, response2.context['pagina'])
 
-        self.assertIn(post1, responseTotal.context['posts'])
-        self.assertIn(post2, responseTotal.context['posts'])
+        self.assertIn(post1, responseTotal.context['pagina'])
+        self.assertIn(post2, responseTotal.context['pagina'])
+
+    def test_paginacao(self):
+        titulo1 = 'Este é o post 1'
+        titulo2 = 'Este é o post 2'
+        titulo3 = 'Este é o post 3'
+        titulo4 = 'Este é o post 4'
+        titulo5 = 'Este é o post 5'
+
+        post1 = self.criarPost(titulo=titulo1, slug='um')
+        post2 = self.criarPost(titulo=titulo2, slug='dois')
+        post3 = self.criarPost(titulo=titulo3, slug='tres')
+        post4 = self.criarPost(titulo=titulo4, slug='quatro')
+        post5 = self.criarPost(titulo=titulo5, slug='cinco')
+
+        response = self.client.get(reverse('localizador:homepage'))
+        self.assertIn(post5, response.context['pagina'])
+        self.assertIn(post4, response.context['pagina'])
+        self.assertIn(post3, response.context['pagina'])
+        self.assertIn(post2, response.context['pagina'])
+        self.assertNotIn(post1, response.context['pagina'])
+

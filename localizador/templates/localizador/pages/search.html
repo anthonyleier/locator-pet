@@ -8,7 +8,7 @@
 {% block conteudo %}
 
 <div class="h-100 d-flex flex-row">
-{% for post in posts %}
+{% for post in pagina %}
     {% include 'localizador/components/post-preview.html' %}
     {% empty %}
     <h1>Nenhum post encontrado</h1>
