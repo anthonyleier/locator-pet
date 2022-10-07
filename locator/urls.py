@@ -5,7 +5,7 @@ from locator import views
 app_name = 'locator'
 
 urlpatterns = [
-    path('', views.homepage, name='home'),
+    path('', views.home, name='home'),
     path('posts/search', views.search, name='search'),
     path('posts/<int:id>', views.post, name='post'),
 ]
