@@ -1,0 +1,17 @@
+{% extends 'locator/pages/base.html' %}
+
+{% block title %}
+<title>Localizador Pet</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="h-100 d-flex flex-row">
+    {% for post in page %}
+        {% include 'locator/components/preview.html' %}
+    {% empty %}
+        <h1>Nenhum post encontrado</h1>
+    {% endfor %}
+</div>
+
+{% endblock content %}

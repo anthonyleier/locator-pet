@@ -12,7 +12,7 @@ QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
 def home(request):
     posts = Post.objects.filter(published=True).order_by('-id')
     page, paginationInfo = makePagination(request, posts, QTY_PER_PAGE)
-    return render(request, 'locator/pages/homepage.html', context={
+    return render(request, 'locator/pages/home.html', context={
         'page': page,
         'tinyRange': paginationInfo.get('tinyRange'),
         'paginationInfo': paginationInfo
@@ -34,7 +34,7 @@ def search(request):
     posts = posts.order_by('-id')
 
     page, paginationInfo = makePagination(request, posts, QTY_PER_PAGE)
-    return render(request, 'locator/pages/search.html', context={
+    return render(request, 'locator/pages/home.html', context={
         'searchTerm': searchTerm,
         'page': page,
         'tinyRange': paginationInfo.get('tinyRange'),

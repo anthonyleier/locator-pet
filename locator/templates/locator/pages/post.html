@@ -1,15 +1,15 @@
 {% extends 'locator/pages/base.html' %}
 {% load static %}
 
-{% block titulo %}
-<title>{{ post.titulo }} | Localizador Pet</title>
-{% endblock titulo %}
+{% block title %}
+<title>{{ post.title }} | Localizador Pet</title>
+{% endblock title %}
 
-{% block conteudo %}
+{% block content %}
 <div class="bg-light border border-dark p-2 m-2 text-center">
-    <img src="{{ post.imagem1.url }}" class="capa" />
-    <h3>{{ post.titulo }}</h3>
-    <p>{{ post.descricao }}</p>
+    <img src="{{ post.image1.url }}" class="cover" />
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.description }}</p>
 
     {% if post.autor.first_name %}
         <p>{{ post.autor.first_name }} {{ post.autor.last_name }}</p>
@@ -20,4 +20,4 @@
     <p>Criado em: {{ post.created_at | date:'d/m/Y' }} às {{ post.created_at | date:'H:i' }}</p>
     <p>Atualizado em: {{ post.updated_at | date:'d/m/Y' }} às {{ post.updated_at | date:'H:i' }}</p>
 </div>
-{% endblock conteudo %}
+{% endblock content %}

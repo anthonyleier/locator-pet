@@ -13,29 +13,15 @@
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
-        {% block titulo %}{% endblock titulo %}
+        {% block title %}
+        {% endblock title %}
     </head>
     <body>
         {% include 'locator/components/navbar.html' %}
-        {% block conteudo %}
-        {% endblock conteudo %}
 
-        {% if pagina.has_other_pages %}
-            <div class="paginacao">
-                {% if paginacao.primeira_pagina_tela %}
-                    <a href="?page=1{{parametroAdicional}}">1</a><span>...</span>
-                {% endif %}
+        {% block content %}
+        {% endblock content %}
 
-                {% for page in pagination_range %}
-                    <a href="?page={{page}}{{parametroAdicional}}">{{page}}</a>
-                {% endfor %}
-
-
-                {% if paginacao.ultima_pagina_tela %}
-                    <span>...</span><a href="?page={{paginacao.total}}{{parametroAdicional}}">{{paginacao.total}}</a>
-                {% endif %}
-
-            </div>
-        {% endif %}
+        {% include 'locator/components/pagination.html' %}
     </body>
 </html>
