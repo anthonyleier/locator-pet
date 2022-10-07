@@ -3,17 +3,17 @@ from django.contrib.auth.models import User
 
 
 class Post(models.Model):
-    titulo = models.CharField(max_length=65)
-    descricao = models.CharField(max_length=165)
+    title = models.CharField(max_length=65)
+    description = models.CharField(max_length=165)
     slug = models.SlugField(unique=True)
     status = models.CharField(max_length=15)
-    publicado = models.BooleanField(default=False)
+    published = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    imagem1 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
-    imagem2 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
-    imagem3 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
-    autor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    image1 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
+    image2 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
+    image3 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return self.titulo
+        return self.title
