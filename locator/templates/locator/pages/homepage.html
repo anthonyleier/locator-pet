@@ -1,4 +1,4 @@
-{% extends 'localizador/pages/base.html' %}
+{% extends 'locator/pages/base.html' %}
 
 {% block titulo %}
 <title>Localizador Pet</title>
@@ -8,7 +8,7 @@
 
 <div class="h-100 d-flex flex-row">
 {% for post in pagina %}
-    {% include 'localizador/components/post-preview.html' %}
+    {% include 'locator/components/post-preview.html' %}
     {% empty %}
     <h1>Nenhum post cadastrado</h1>
 {% endfor %}

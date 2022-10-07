@@ -4,7 +4,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('localizador.urls')),
+    path('', include('locator.urls')),
     path('admin/', admin.site.urls),
 ]
 

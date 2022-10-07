@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('localizador', '0003_alter_post_imagem1_alter_post_imagem2_and_more'),
+        ('locator', '0003_alter_post_imagem1_alter_post_imagem2_and_more'),
     ]
 
     operations = [

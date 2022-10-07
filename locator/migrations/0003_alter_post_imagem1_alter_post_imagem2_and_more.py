@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('localizador', '0002_remove_post_autor_alter_post_imagem1_and_more'),
+        ('locator', '0002_remove_post_autor_alter_post_imagem1_and_more'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='post',
             name='imagem1',
-            field=models.ImageField(blank=True, null=True, upload_to='localizador/upload/%Y/%m/%d/'),
+            field=models.ImageField(blank=True, null=True, upload_to='locator/upload/%Y/%m/%d/'),
         ),
         migrations.AlterField(
             model_name='post',
             name='imagem2',
-            field=models.ImageField(blank=True, null=True, upload_to='localizador/upload/%Y/%m/%d/'),
+            field=models.ImageField(blank=True, null=True, upload_to='locator/upload/%Y/%m/%d/'),
         ),
         migrations.AlterField(
             model_name='post',
             name='imagem3',
-            field=models.ImageField(blank=True, null=True, upload_to='localizador/upload/%Y/%m/%d/'),
+            field=models.ImageField(blank=True, null=True, upload_to='locator/upload/%Y/%m/%d/'),
         ),
     ]

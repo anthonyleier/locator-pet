@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('localizador', '0001_initial'),
+        ('locator', '0001_initial'),
     ]
 
     operations = [
@@ -17,16 +17,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='post',
             name='imagem1',
-            field=models.ImageField(null=True, upload_to='localizador/upload/%Y/%m/%d/'),
+            field=models.ImageField(null=True, upload_to='locator/upload/%Y/%m/%d/'),
         ),
         migrations.AlterField(
             model_name='post',
             name='imagem2',
-            field=models.ImageField(null=True, upload_to='localizador/upload/%Y/%m/%d/'),
+            field=models.ImageField(null=True, upload_to='locator/upload/%Y/%m/%d/'),
         ),
         migrations.AlterField(
             model_name='post',
             name='imagem3',
-            field=models.ImageField(null=True, upload_to='localizador/upload/%Y/%m/%d/'),
+            field=models.ImageField(null=True, upload_to='locator/upload/%Y/%m/%d/'),
         ),
     ]

@@ -1,8 +1,8 @@
 from django.urls import path
-from localizador import views
+from locator import views
 
-# localizador:post
-app_name = 'localizador'
+# locator:post
+app_name = 'locator'
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),

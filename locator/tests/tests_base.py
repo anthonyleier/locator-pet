@@ -1,9 +1,9 @@
 from django.test import TestCase
-from localizador.models import Post
+from locator.models import Post
 from django.contrib.auth.models import User
 
 
-class LocalizadorTestBase(TestCase):
+class LocatorTestBase(TestCase):
     def criarAutor(self):
         autor = User.objects.create_user(
             first_name="Anthony",
@@ -21,7 +21,7 @@ class LocalizadorTestBase(TestCase):
             slug=slug,
             status='Encontrado',
             publicado=publicado,
-            imagem1='localizador/upload/2022/09/23/chihuahua.jpg',
+            imagem1='locator/upload/2022/09/23/chihuahua.jpg',
             autor=autor)
         return post
 

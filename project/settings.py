@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'localizador'
+    'locator'
 ]
 
 MIDDLEWARE = [
@@ -62,7 +62,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pet_localizador',
+        'NAME': 'pet_locator',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
     }

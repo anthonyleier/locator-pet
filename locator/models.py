@@ -10,9 +10,9 @@ class Post(models.Model):
     publicado = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    imagem1 = models.ImageField(upload_to='localizador/upload/%Y/%m/%d/', null=True, blank=True)
-    imagem2 = models.ImageField(upload_to='localizador/upload/%Y/%m/%d/', null=True, blank=True)
-    imagem3 = models.ImageField(upload_to='localizador/upload/%Y/%m/%d/', null=True, blank=True)
+    imagem1 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
+    imagem2 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
+    imagem3 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
     autor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

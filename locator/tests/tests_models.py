@@ -1,11 +1,11 @@
-from localizador.models import Post
+from locator.models import Post
 from parameterized import parameterized
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from localizador.tests.tests_base import LocalizadorTestBase
+from locator.tests.tests_base import LocatorTestBase
 
 
-class LocalizadorModelsTest(LocalizadorTestBase):
+class LocatorModelsTest(LocatorTestBase):
     def setUp(self):
         self.post = self.criarPost()
 
@@ -45,7 +45,7 @@ class LocalizadorModelsTest(LocalizadorTestBase):
             descricao='Labrador desaparecido ontem',
             slug='labrador-desaparecido',
             status='Encontrado',
-            imagem1='localizador/upload/2022/09/23/chihuahua.jpg',
+            imagem1='locator/upload/2022/09/23/chihuahua.jpg',
             autor=autor)
         post.full_clean()
         post.save()

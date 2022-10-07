@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('localizador', '0004_post_autor'),
+        ('locator', '0004_post_autor'),
     ]
 
     operations = [

@@ -1,28 +1,28 @@
 from django.urls import reverse
-from localizador.tests.tests_base import LocalizadorTestBase
+from locator.tests.tests_base import LocatorTestBase
 from unittest.mock import patch
 
 
-class LocalizadorTemplatesTest(LocalizadorTestBase):
+class LocatorTemplatesTest(LocatorTestBase):
     def test_home_status(self):
-        response = self.client.get(reverse('localizador:homepage'))
+        response = self.client.get(reverse('locator:homepage'))
         self.assertEqual(response.status_code, 200)
 
     def test_home_template(self):
-        response = self.client.get(reverse('localizador:homepage'))
-        self.assertTemplateUsed(response, 'localizador/pages/homepage.html')
+        response = self.client.get(reverse('locator:homepage'))
+        self.assertTemplateUsed(response, 'locator/pages/homepage.html')
 
     def test_home_vazio(self):
-        response = self.client.get(reverse('localizador:homepage'))
+        response = self.client.get(reverse('locator:homepage'))
         self.assertIn('Nenhum post cadastrado', response.content.decode('UTF8'))
 
     def test_post_404_status(self):
-        response = self.client.get(reverse('localizador:post', args=[250]))
+        response = self.client.get(reverse('locator:post', args=[250]))
         self.assertEqual(response.status_code, 404)
 
     def test_home_com_posts(self):
         self.criarPost()
-        response = self.client.get(reverse('localizador:homepage'))
+        response = self.client.get(reverse('locator:homepage'))
         html = response.content.decode('UTF8')
 
         self.assertEqual(len(response.context['pagina']), 1)
@@ -32,7 +32,7 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
 
     def test_post_detalhes(self):
         post = self.criarPost()
-        response = self.client.get(reverse('localizador:post', args=[post.id]))
+        response = self.client.get(reverse('locator:post', args=[post.id]))
         html = response.content.decode('UTF8')
 
         self.assertEqual(response.context['post'].titulo, "Labrador desaparecido")
@@ -41,26 +41,26 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
 
     def test_home_nao_publicado(self):
         self.criarPost(publicado=False)
-        response = self.client.get(reverse('localizador:homepage'))
+        response = self.client.get(reverse('locator:homepage'))
         self.assertIn('Nenhum post cadastrado', response.content.decode('UTF8'))
         self.limparPosts()
 
     def test_post_nao_publicado(self):
         post = self.criarPost(publicado=False)
-        response = self.client.get(reverse('localizador:post', args=[post.id]))
+        response = self.client.get(reverse('locator:post', args=[post.id]))
         self.assertEqual(response.status_code, 404)
         self.limparPosts()
 
     def test_search_template(self):
-        response = self.client.get(reverse('localizador:search') + '?q=labrador')
-        self.assertTemplateUsed(response, 'localizador/pages/search.html')
+        response = self.client.get(reverse('locator:search') + '?q=labrador')
+        self.assertTemplateUsed(response, 'locator/pages/search.html')
 
     def test_search_404(self):
-        response = self.client.get(reverse('localizador:search'))
+        response = self.client.get(reverse('locator:search'))
         self.assertEqual(response.status_code, 404)
 
     def test_search_seguranca_template(self):
-        response = self.client.get(reverse('localizador:search') + '?q=<scriptmalicioso>')
+        response = self.client.get(reverse('locator:search') + '?q=<scriptmalicioso>')
         self.assertIn('&lt;scriptmalicioso&gt;', response.content.decode('UTF8'))
         self.assertNotIn('<scriptmalicioso>', response.content.decode('UTF8'))
 
@@ -71,7 +71,7 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
         post1 = self.criarPost(titulo=titulo1, slug='um')
         post2 = self.criarPost(titulo=titulo2, slug='dois')
 
-        searchURL = reverse('localizador:search')
+        searchURL = reverse('locator:search')
         response1 = self.client.get(f"{searchURL}?q={titulo1}")
         response2 = self.client.get(f"{searchURL}?q={titulo2}")
         responseTotal = self.client.get(f"{searchURL}?q=POST")
@@ -98,7 +98,7 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
         post4 = self.criarPost(titulo=titulo4, slug='quatro')
         post5 = self.criarPost(titulo=titulo5, slug='cinco')
 
-        response = self.client.get(reverse('localizador:homepage'))
+        response = self.client.get(reverse('locator:homepage'))
         self.assertIn(post5, response.context['pagina'])
         self.assertIn(post4, response.context['pagina'])
         self.assertIn(post3, response.context['pagina'])
@@ -110,8 +110,8 @@ class LocalizadorTemplatesTest(LocalizadorTestBase):
             kwargs = {'titulo': f't{i}', 'slug': f's{i}'}
             self.criarPost(**kwargs)
 
-        # with patch('localizador.views.QUANTIDADE_POR_PAGINA', new=3):
-        #     response = self.client.get(reverse('localizador:homepage'))
+        # with patch('locator.views.QUANTIDADE_POR_PAGINA', new=3):
+        #     response = self.client.get(reverse('locator:homepage'))
         #     paginacao = response.context['paginacao']
         #     paginator = paginacao.get('page_range')
 
