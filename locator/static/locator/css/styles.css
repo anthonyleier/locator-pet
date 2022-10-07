@@ -1,9 +1,48 @@
+:root {
+    --background: white;
+    --background-element: grey;
+    --title: purple;
+    --text: black;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 body {
-    background-color: grey;
+    background-color: var(--background);
+}
+
+.navbar {
+    background-color: var(--background-element);
+}
+
+.navbar>div>a {
+    color: var(--title);
+
+}
+
+.paginator {
+    text-align: center;
+    background-color: var(--background-element);
+}
+
+.current-page {
+    color: red;
+    font-size: 2vw;
+    margin: 0px 5px 0px 5px;
+}
+
+.page {
+    color: white;
+    font-size: 2vw;
+    margin: 0px 5px 0px 5px;
 }
 
 .cover {
-    width: 30%;
+    width: 100%;
+    max-height: 180px;
 }
 
 .cards {
@@ -14,4 +53,6 @@ body {
 
 .card {
     position: relative;
+    background-color: var(--background-element);
+    color: var(--text);
 }
