@@ -2,11 +2,15 @@ from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from localizador.models import Post
+from utils.paginacao import montarRangePaginacao, construirPaginacao
+
+QUANTIDADE_POR_PAGINA = 4
 
 
 def homepage(request):
     posts = Post.objects.filter(publicado=True).order_by('-id')
-    return render(request, 'localizador/pages/homepage.html', context={'posts': posts})
+    pagina, pagination_range = construirPaginacao(request, posts, QUANTIDADE_POR_PAGINA)
+    return render(request, 'localizador/pages/homepage.html', context={'pagina': pagina, 'pagination_range': pagination_range.get('paginacao'), 'paginacao': pagination_range})
 
 
 def post(request, id):
@@ -23,4 +27,5 @@ def search(request):
     posts = Post.objects.filter(Q(Q(titulo__icontains=busca) | Q(descricao__icontains=busca)), publicado=True)
     posts = posts.order_by('-id')
 
-    return render(request, 'localizador/pages/search.html', context={'busca': busca, 'posts': posts})
+    pagina, pagination_range = construirPaginacao(request, posts, QUANTIDADE_POR_PAGINA)
+    return render(request, 'localizador/pages/search.html', context={'busca': busca, 'pagina': pagina, 'pagination_range': pagination_range.get('paginacao'), 'paginacao': pagination_range, 'parametroAdicional': f"&q={busca}"})

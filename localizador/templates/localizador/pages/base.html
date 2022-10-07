@@ -19,5 +19,23 @@
         {% include 'localizador/components/navbar.html' %}
         {% block conteudo %}
         {% endblock conteudo %}
+
+        {% if pagina.has_other_pages %}
+            <div class="paginacao">
+                {% if paginacao.primeira_pagina_tela %}
+                    <a href="?page=1{{parametroAdicional}}">1</a><span>...</span>
+                {% endif %}
+
+                {% for page in pagination_range %}
+                    <a href="?page={{page}}{{parametroAdicional}}">{{page}}</a>
+                {% endfor %}
+
+
+                {% if paginacao.ultima_pagina_tela %}
+                    <span>...</span><a href="?page={{paginacao.total}}{{parametroAdicional}}">{{paginacao.total}}</a>
+                {% endif %}
+
+            </div>
+        {% endif %}
     </body>
 </html>
