@@ -1,33 +1,43 @@
 import os
 from django.db.models import Q
-from django.http import Http404
-from django.shortcuts import render, get_object_or_404
 from locator.models import Post
-from utils.pagination import montarRangePaginacao, construirPaginacao
+from django.http import Http404
+from utils.pagination import makePagination
+from django.shortcuts import render, get_object_or_404
 
 
-QUANTIDADE_POR_PAGINA = int(os.environ.get('QUANTIDADE_POR_PAGINA', 4))
+QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
 
 
-def homepage(request):
-    posts = Post.objects.filter(publicado=True).order_by('-id')
-    pagina, pagination_range = construirPaginacao(request, posts, QUANTIDADE_POR_PAGINA)
-    return render(request, 'locator/pages/homepage.html', context={'pagina': pagina, 'pagination_range': pagination_range.get('paginacao'), 'paginacao': pagination_range})
+def home(request):
+    posts = Post.objects.filter(published=True).order_by('-id')
+    page, paginationInfo = makePagination(request, posts, QTY_PER_PAGE)
+    return render(request, 'locator/pages/homepage.html', context={
+        'page': page,
+        'tinyRange': paginationInfo.get('tinyRange'),
+        'paginationInfo': paginationInfo
+    })
 
 
 def post(request, id):
-    post = get_object_or_404(Post, pk=id, publicado=True)
+    post = get_object_or_404(Post, pk=id, published=True)
     return render(request, 'locator/pages/post.html', context={'post': post})
 
 
 def search(request):
-    busca = request.GET.get('q', '').strip()
+    searchTerm = request.GET.get('q', '').strip()
 
-    if not busca:
+    if not searchTerm:
         raise Http404()
 
-    posts = Post.objects.filter(Q(Q(titulo__icontains=busca) | Q(descricao__icontains=busca)), publicado=True)
+    posts = Post.objects.filter(Q(Q(title__icontains=searchTerm) | Q(description__icontains=searchTerm)), published=True)
     posts = posts.order_by('-id')
 
-    pagina, pagination_range = construirPaginacao(request, posts, QUANTIDADE_POR_PAGINA)
-    return render(request, 'locator/pages/search.html', context={'busca': busca, 'pagina': pagina, 'pagination_range': pagination_range.get('paginacao'), 'paginacao': pagination_range, 'parametroAdicional': f"&q={busca}"})
+    page, paginationInfo = makePagination(request, posts, QTY_PER_PAGE)
+    return render(request, 'locator/pages/search.html', context={
+        'searchTerm': searchTerm,
+        'page': page,
+        'tinyRange': paginationInfo.get('tinyRange'),
+        'paginationInfo': paginationInfo,
+        'additionalParam': f"&q={searchTerm}"
+    })
