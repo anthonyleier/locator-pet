@@ -1,31 +1,42 @@
-from django.test import TestCase
 from locator.models import Post
+from django.test import TestCase
 from django.contrib.auth.models import User
 
 
 class LocatorTestBase(TestCase):
-    def criarAutor(self):
-        autor = User.objects.create_user(
-            first_name="Anthony",
-            last_name="Cruz",
-            username="anthony.cruz",
+    def makeAuthor(
+            self,
+            first_name="Julio",
+            last_name="Santos",
+            username="julio.santos",
             password="alfa@2020",
-            email="anthony.cruz@alfatransportes.com.br")
-        return autor
+            email="julio.santos@alfatransportes.com.br"):
 
-    def criarPost(self, publicado=True, titulo='Labrador desaparecido', slug='labrador-desaparecido-testes'):
-        autor = User.objects.all().first()
-        post = Post.objects.create(
-            titulo=titulo,
-            descricao='Labrador desaparecido ontem',
+        return User.objects.create_user(
+            first_name=first_name,
+            last_name=last_name,
+            username=username,
+            password=password,
+            email=email)
+
+    def makePost(
+            self,
+            title='Não consigo encontrar o meu doberman',
+            description='Doberman está desaparecido desde o dia de ontem',
+            slug='nao-consigo-encontrar-o-meu-doberman',
+            status='Desaparecido',
+            published=True,
+            image1='locator/upload/2022/10/10/doberman.jpg',
+            author=None):
+
+        if not author:
+            author = self.makeAuthor()
+
+        return Post.objects.create(
+            title=title,
+            description=description,
             slug=slug,
-            status='Encontrado',
-            publicado=publicado,
-            imagem1='locator/upload/2022/09/23/chihuahua.jpg',
-            autor=autor)
-        return post
-
-    def limparPosts(self):
-        posts = Post.objects.all()
-        for post in posts:
-            post.delete()
+            status=status,
+            published=published,
+            image1=image1,
+            author=author)

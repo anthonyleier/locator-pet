@@ -2,7 +2,8 @@ import math
 from django.core.paginator import Paginator
 
 
-def makePaginationInfo(totalRange, tinyRangeSize, currentPage):
+def makePaginationInfo(paginator, tinyRangeSize, currentPage):
+    totalRange = paginator.page_range
     tinyRangeHalfSize = math.ceil(tinyRangeSize / 2)
     tinyRangeStart = currentPage - tinyRangeHalfSize
     tinyRangeEnd = currentPage + tinyRangeHalfSize
@@ -20,6 +21,7 @@ def makePaginationInfo(totalRange, tinyRangeSize, currentPage):
     tinyRange = totalRange[tinyRangeStart:tinyRangeEnd]
 
     return {
+        'paginator': paginator,
         'tinyRange': tinyRange,
         'totalRange': totalRange,
         'tinySizeRange': tinyRangeSize,
@@ -41,5 +43,5 @@ def makePagination(request, querySet, qtyPerPage):
     paginator = Paginator(querySet, qtyPerPage)
     page = paginator.get_page(requestPage)
 
-    paginationInfo = makePaginationInfo(paginator.page_range, 4, requestPage)
+    paginationInfo = makePaginationInfo(paginator, 4, requestPage)
     return page, paginationInfo

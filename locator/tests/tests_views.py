@@ -3,15 +3,15 @@ from django.test import TestCase
 from django.urls import reverse, resolve
 
 
-class LocatorViewsTest(TestCase):
-    def test_home_view(self):
-        view = resolve(reverse('locator:homepage'))
-        self.assertIs(view.func, views.homepage)
+class LocatorViews(TestCase):
+    def test_home(self):
+        view = resolve(reverse('locator:home'))
+        self.assertIs(view.func, views.home)
 
-    def test_post_view(self):
+    def test_post(self):
         view = resolve(reverse('locator:post', args=[2]))
         self.assertIs(view.func, views.post)
 
-    def test_search_view(self):
+    def test_search(self):
         view = resolve(reverse('locator:search'))
         self.assertIs(view.func, views.search)

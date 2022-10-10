@@ -32,8 +32,8 @@ def search(request):
 
     posts = Post.objects.filter(Q(Q(title__icontains=searchTerm) | Q(description__icontains=searchTerm)), published=True)
     posts = posts.order_by('-id')
-
     page, paginationInfo = makePagination(request, posts, QTY_PER_PAGE)
+
     return render(request, 'locator/pages/home.html', context={
         'searchTerm': searchTerm,
         'page': page,
