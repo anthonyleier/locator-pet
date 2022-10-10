@@ -2,6 +2,7 @@ import os
 from django.db.models import Q
 from locator.models import Post
 from django.http import Http404
+from locator.forms import RegisterForm
 from utils.pagination import makePagination
 from django.shortcuts import render, get_object_or_404
 
@@ -41,3 +42,11 @@ def search(request):
         'paginationInfo': paginationInfo,
         'additionalParam': f"&q={searchTerm}"
     })
+
+
+def register(request):
+    if request.POST:
+        form = RegisterForm(request.POST)
+    else:
+        form = RegisterForm()
+    return render(request, 'locator/pages/register.html', context={'form': form})
