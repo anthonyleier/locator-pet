@@ -4,7 +4,7 @@ from locator.models import Post
 from django.http import Http404
 from locator.forms import RegisterForm
 from utils.pagination import makePagination
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 
 
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
@@ -44,9 +44,16 @@ def search(request):
     })
 
 
-def register(request):
-    if request.POST:
-        form = RegisterForm(request.POST)
-    else:
-        form = RegisterForm()
+def registerForm(request):
+    form_data = request.session.get('form_data')
+    form = RegisterForm(form_data)
     return render(request, 'locator/pages/register.html', context={'form': form})
+
+
+def registerCreate(request):
+    if not request.POST:
+        raise Http404()
+
+    form_data = request.POST
+    request.session['form_data'] = form_data
+    return redirect('locator:registerForm')
