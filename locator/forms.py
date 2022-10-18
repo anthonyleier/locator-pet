@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 def addAttr(field, attrName, attrValue):
@@ -69,3 +70,30 @@ class RegisterForm(forms.ModelForm):
             'placeholder': 'Repeat your password here'
         })
     )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        password_confirm = cleaned_data.get('password_confirm')
+
+        if password != password_confirm:
+            raise ValidationError({
+                'password': ValidationError('Passwords must be the same', code='invalid'),
+                'password_confirm': ValidationError('Passwords must be the same', code='invalid'),
+            })
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+
+        if 'password' in password:
+            raise ValidationError('Password cannot contain "%(value)s"', code='invalid', params={'value': 'password word'})
+
+        return password
+
+    def clean_first_name(self):
+        data = self.cleaned_data.get('first_name')
+
+        if 'anthony' in data:
+            raise ValidationError('Password cannot contain "%(value)s"', code='invalid', params={'value': 'password word'})
+
+        return data
