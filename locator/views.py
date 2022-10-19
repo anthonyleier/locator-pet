@@ -5,6 +5,7 @@ from django.http import Http404
 from locator.forms import RegisterForm
 from utils.pagination import makePagination
 from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib import messages
 
 
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
@@ -56,4 +57,11 @@ def registerCreate(request):
 
     form_data = request.POST
     request.session['form_data'] = form_data
+
+    form = RegisterForm(form_data)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Your user is created, please log in.')
+        del (request.session['form_data'])
+
     return redirect('locator:registerForm')
