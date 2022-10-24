@@ -1,12 +1,17 @@
-{% extends 'locator/pages/base.html' %} {% block title %}
+{% extends 'locator/pages/base.html' %}
+
+{% block title %}
 <title>Registar | Localizador Pet</title>
-{% endblock title %} {% block content %}
-<div>
-    <h1>Registrar</h1>
-    <form action="{% url 'locator:registerCreate' %}" method="POST">
-        {% csrf_token %}
-        <div>
-            {% for field in form %}
+{% endblock title %}
+
+{% block content %}
+<h1>Registrar</h1>
+
+<form action="{% url 'registerCreate' %}" method="POST">
+    {% csrf_token %}
+
+    <div>
+        {% for field in form %}
             <div class="input-group">
                 <label for="{{field.id_for_label}}">{{field.label}}</label>
                 {{field}}
@@ -17,12 +22,16 @@
 
                 {{field.errors}}
             </div>
-            {% endfor %}
-        </div>
-        <div class="input-group">
-            <button type="submit">Registar</button>
-        </div>
-        {% if form.errors %}errrororororororssssss{% endif %}
-    </form>
-</div>
+        {% endfor %}
+    </div>
+
+    <div class="input-group">
+        <button type="submit">Registar</button>
+    </div>
+
+    {% if form.errors %}
+            <h6>Foram encontrados erros no formulário, confira os dados</h6>
+    {% endif %}
+
+</form>
 {% endblock content %}

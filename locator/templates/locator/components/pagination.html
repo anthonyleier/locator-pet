@@ -1,19 +1,23 @@
 {% if page.has_other_pages %}
-    <div class="paginator">
-        {% if paginationInfo.isFirstPageNotInRange %}
-            <a href="?page=1{{ additionalParam }}" class="page">1</a> <span>⬅️</span>
-        {% endif %}
+<div class="paginator">
 
-        {% for page in tinyRange %}
-            {% if page == paginationInfo.currentPage %}
-                <a href="?page={{ page }}{{ additionalParam }}" class="current-page">{{ page }}</a>
-            {% else %}
-                <a href="?page={{ page }}{{ additionalParam }}" class="page">{{ page }}</a>
-            {% endif %}
-        {% endfor %}
+    {% if paginationInfo.isFirstPageNotInRange %}
+        <a href="?page=1{{ additionalParam }}" class="page">1</a>
+        <span>⬅️</span>
+    {% endif %}
 
-        {% if paginationInfo.isLastPageNotInRange %}
-        <span>➡️</span> <a href="?page={{ paginationInfo.totalSize }}{{ additionalParam }}" class="page">{{ paginationInfo.totalSize }}</a>
+    {% for page in tinyRange %}
+        {% if page == paginationInfo.currentPage %}
+            <a href="?page={{ page }}{{ additionalParam }}" class="current-page">{{ page }}</a>
+        {% else %}
+            <a href="?page={{ page }}{{ additionalParam }}" class="page">{{ page }}</a>
         {% endif %}
-    </div>
+    {% endfor %}
+
+    {% if paginationInfo.isLastPageNotInRange %}
+        <span>➡️</span>
+        <a href="?page={{ paginationInfo.totalSize }}{{ additionalParam }}" class="page">{{ paginationInfo.totalSize }}</a>
+    {% endif %}
+
+</div>
 {% endif %}

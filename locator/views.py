@@ -69,7 +69,7 @@ def registerCreate(request):
         messages.success(request, 'Your user is created, please log in.')
         del (request.session['form_data'])
 
-    return redirect('locator:loginForm')
+    return redirect('loginForm')
 
 
 def loginForm(request):
@@ -97,16 +97,16 @@ def loginAccess(request):
     else:
         messages.error(request, 'Erro na validação')
 
-    return redirect('locator:loginForm')
+    return redirect('loginForm')
 
 
-@login_required(login_url='locator:loginForm')
+@login_required(login_url='loginForm')
 def logoutAccess(request):
     if not request.POST:
-        return redirect('locator:loginForm')
+        return redirect('loginForm')
 
     if request.POST.get('username') != request.user.username:
-        return redirect('locator:loginForm')
+        return redirect('loginForm')
 
     logout(request)
-    return redirect('locator:loginForm')
+    return redirect('loginForm')

@@ -5,20 +5,20 @@ from locator.tests.tests_base import LocatorTestBase
 
 class LocatorTemplateHome(LocatorTestBase):
     def test_template(self):
-        response = self.client.get(reverse('locator:home'))
+        response = self.client.get(reverse('home'))
         self.assertTemplateUsed(response, 'locator/pages/home.html')
 
     def test_200_status(self):
-        response = self.client.get(reverse('locator:home'))
+        response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
 
     def test_empty(self):
-        response = self.client.get(reverse('locator:home'))
+        response = self.client.get(reverse('home'))
         self.assertIn('Nenhum post encontrado', response.content.decode('UTF8'))
 
     def test_posts(self):
         self.makePost()
-        response = self.client.get(reverse('locator:home'))
+        response = self.client.get(reverse('home'))
         html = response.content.decode('UTF8')
 
         self.assertEqual(len(response.context['page']), 1)
@@ -27,7 +27,7 @@ class LocatorTemplateHome(LocatorTestBase):
 
     def test_posts_not_published(self):
         post = self.makePost(published=False)
-        response = self.client.get(reverse('locator:home'))
+        response = self.client.get(reverse('home'))
         self.assertIsNotNone(post.id)
         self.assertIn('Nenhum post encontrado', response.content.decode('UTF8'))
 
@@ -45,7 +45,7 @@ class LocatorTemplateHome(LocatorTestBase):
         post4 = self.makePost(author=author, title=title4, slug='four')
         post5 = self.makePost(author=author, title=title5, slug='five')
 
-        response = self.client.get(reverse('locator:home'))
+        response = self.client.get(reverse('home'))
         self.assertIn(post5, response.context['page'])
         self.assertIn(post4, response.context['page'])
         self.assertIn(post3, response.context['page'])
@@ -59,7 +59,7 @@ class LocatorTemplateHome(LocatorTestBase):
             self.makePost(**kwargs)
 
         with patch('locator.views.QTY_PER_PAGE', new=3):
-            response = self.client.get(reverse('locator:home'))
+            response = self.client.get(reverse('home'))
             paginationInfo = response.context['paginationInfo']
             paginator = paginationInfo.get('paginator')
 

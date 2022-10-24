@@ -1,18 +1,33 @@
-{% extends 'locator/pages/base.html' %} {% block title %}
+{% extends 'locator/pages/base.html' %}
+
+{% block title %}
 <title>Login | Localizador Pet</title>
-{% endblock title %} {% block content %}
-<form action="{% url 'locator:logoutAccess' %}" method="POST">{% csrf_token %} <input type="hidden" name="username" value="{{request.user.username}}" /> <button type="submit">Sair</button></form>
-<div>
-    <h1>Login</h1>
-    {% if not request.user.is_authenticated %}
-    <form action="{% url 'locator:loginAccess' %}" method="POST">
+{% endblock title %}
+
+{% block content %}
+<h1>Login</h1>
+
+{% if request.user.is_authenticated %}
+    <h6>Usuário logado: {{request.user.username}}</h6>
+    <form action="{% url 'logoutAccess' %}" method="POST">
         {% csrf_token %}
-        <div>{{form}}</div>
-        <div class="input-group">
-            <button type="submit">Registar</button>
-        </div>
-        {% if form.errors %}errrororororororssssss{% endif %}
+        <input type="hidden" name="username" value="{{request.user.username}}" />
+        <button type="submit">Sair</button>
     </form>
-    {% endif %}
-</div>
+
+{% else %}
+    <form action="{% url 'loginAccess' %}" method="POST">
+        {% csrf_token %}
+        {{form}}
+
+        <div class="input-group">
+            <button type="submit">Logar</button>
+        </div>
+
+        {% if form.errors %}
+            <h6>Foram encontrados erros no formulário, confira os dados</h6>
+        {% endif %}
+    </form>
+
+{% endif %}
 {% endblock content %}
