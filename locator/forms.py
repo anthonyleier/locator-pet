@@ -53,12 +53,14 @@ class RegisterForm(forms.ModelForm):
         widget=forms.PasswordInput,
         error_messages={'required': 'Password must not be empty'},
         help_text=('Password must have at least one uppercase letter, one lowercase letter and one number. The length should be at least 8 characters.'),
-        validators=[verifyStrongPassword]
+        validators=[verifyStrongPassword],
+        label='Password'
     )
 
     password_confirm = forms.CharField(
         required=True,
-        widget=forms.PasswordInput
+        widget=forms.PasswordInput,
+        label='Password confirm'
     )
 
     def clean(self):
