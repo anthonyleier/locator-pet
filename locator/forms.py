@@ -65,9 +65,23 @@ class RegisterForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        exists = User.objects.filter(email=email)
+
+        if exists:
+            error = ValidationError('Email tem que ser diferente')
+            raise ValidationError({'email': error})
+
         password = cleaned_data.get('password')
         password_confirm = cleaned_data.get('password_confirm')
 
         if password != password_confirm:
             error = ValidationError('Password and password validation must be the same', code='invalid')
             raise ValidationError({'password': error, 'password_confirm': error})
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(
+        widget=forms.PasswordInput()
+    )

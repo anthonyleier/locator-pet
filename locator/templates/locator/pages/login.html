@@ -1,0 +1,18 @@
+{% extends 'locator/pages/base.html' %} {% block title %}
+<title>Login | Localizador Pet</title>
+{% endblock title %} {% block content %}
+<form action="{% url 'locator:logoutAccess' %}" method="POST">{% csrf_token %} <input type="hidden" name="username" value="{{request.user.username}}" /> <button type="submit">Sair</button></form>
+<div>
+    <h1>Login</h1>
+    {% if not request.user.is_authenticated %}
+    <form action="{% url 'locator:loginAccess' %}" method="POST">
+        {% csrf_token %}
+        <div>{{form}}</div>
+        <div class="input-group">
+            <button type="submit">Registar</button>
+        </div>
+        {% if form.errors %}errrororororororssssss{% endif %}
+    </form>
+    {% endif %}
+</div>
+{% endblock content %}

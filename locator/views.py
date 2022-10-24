@@ -2,10 +2,13 @@ import os
 from django.db.models import Q
 from locator.models import Post
 from django.http import Http404
-from locator.forms import RegisterForm
+from locator.forms import RegisterForm, LoginForm
 from utils.pagination import makePagination
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
@@ -60,8 +63,50 @@ def registerCreate(request):
 
     form = RegisterForm(form_data)
     if form.is_valid():
-        form.save()
+        user = form.save(commit=False)
+        user.set_password(user.password)
+        user.save()
         messages.success(request, 'Your user is created, please log in.')
         del (request.session['form_data'])
 
-    return redirect('locator:registerForm')
+    return redirect('locator:loginForm')
+
+
+def loginForm(request):
+    form = LoginForm()
+    return render(request, 'locator/pages/login.html', context={'form': form})
+
+
+def loginAccess(request):
+    if not request.POST:
+        raise Http404()
+
+    form = LoginForm(request.POST)
+    if form.is_valid():
+        authenticatedUser = authenticate(
+            username=form.cleaned_data.get('username', ''),
+            password=form.cleaned_data.get('password', '')
+        )
+
+        if authenticatedUser:
+            login(request, authenticatedUser)
+            messages.success(request, 'Usuário logado com sucesso')
+        else:
+            messages.error(request, 'Usuário inválido')
+
+    else:
+        messages.error(request, 'Erro na validação')
+
+    return redirect('locator:loginForm')
+
+
+@login_required(login_url='locator:loginForm')
+def logoutAccess(request):
+    if not request.POST:
+        return redirect('locator:loginForm')
+
+    if request.POST.get('username') != request.user.username:
+        return redirect('locator:loginForm')
+
+    logout(request)
+    return redirect('locator:loginForm')
