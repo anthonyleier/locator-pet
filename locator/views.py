@@ -1,14 +1,14 @@
 import os
 from django.db.models import Q
 from locator.models import Post
-from django.http import Http404
-from locator.forms import RegisterForm, LoginForm
-from utils.pagination import makePagination
-from django.shortcuts import redirect, render, get_object_or_404
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+from django.http import Http404
+from django.contrib import messages
+from utils.pagination import makePagination
+from locator.forms import RegisterForm, LoginForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render, get_object_or_404
 
 
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
@@ -54,22 +54,24 @@ def registerForm(request):
     return render(request, 'locator/pages/register.html', context={'form': form})
 
 
-def registerCreate(request):
+def registerAction(request):
     if not request.POST:
         raise Http404()
 
     form_data = request.POST
     request.session['form_data'] = form_data
-
     form = RegisterForm(form_data)
+
     if form.is_valid():
         user = form.save(commit=False)
         user.set_password(user.password)
         user.save()
+        print(user)
         messages.success(request, 'Your user is created, please log in.')
         del (request.session['form_data'])
+        return redirect(reverse('loginForm'))
 
-    return redirect('loginForm')
+    return redirect('registerForm')
 
 
 def loginForm(request):
@@ -77,7 +79,7 @@ def loginForm(request):
     return render(request, 'locator/pages/login.html', context={'form': form})
 
 
-def loginAccess(request):
+def loginAction(request):
     if not request.POST:
         raise Http404()
 
@@ -97,11 +99,11 @@ def loginAccess(request):
     else:
         messages.error(request, 'Erro na validação')
 
-    return redirect('loginForm')
+    return redirect(reverse('loginForm'))
 
 
 @login_required(login_url='loginForm')
-def logoutAccess(request):
+def logoutAction(request):
     if not request.POST:
         return redirect('loginForm')
 

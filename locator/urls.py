@@ -3,11 +3,15 @@ from locator import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+
     path('posts/search', views.search, name='search'),
     path('posts/<int:id>', views.post, name='post'),
-    path('register/form', views.registerForm, name="registerForm"),
-    path('register/create', views.registerCreate, name="registerCreate"),
-    path('login/form', views.loginForm, name="loginForm"),
-    path('login/access', views.loginAccess, name="loginAccess"),
-    path('logout/access', views.logoutAccess, name="logoutAccess"),
+
+    path('register', views.registerForm, name="registerForm"),
+    path('register/action', views.registerAction, name="registerAction"),
+
+    path('login', views.loginForm, name="loginForm"),
+    path('login/action', views.loginAction, name="loginAction"),
+
+    path('logout/action', views.logoutAction, name="logoutAction"),
 ]

@@ -1,24 +1,14 @@
-import re
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from utils.functions import addAttr, addPlaceholder, verifyStrongPassword
 
 
-def addAttr(field, attrName, attrValue):
-    existingAttr = field.widget.attrs.get(attrName)
-    newAttr = f"{existingAttr} {attrValue}".strip() if existingAttr else attrValue
-    field.widget.attrs[attrName] = newAttr
-
-
-def addPlaceholder(field, attrValue):
-    field.widget.attrs['placeholder'] = attrValue
-
-
-def verifyStrongPassword(password):
-    regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')
-
-    if not regex.match(password):
-        raise ValidationError(('Fracokk'), code='invalid')
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(
+        widget=forms.PasswordInput()
+    )
 
 
 class RegisterForm(forms.ModelForm):
@@ -60,6 +50,9 @@ class RegisterForm(forms.ModelForm):
     password_confirm = forms.CharField(
         required=True,
         widget=forms.PasswordInput,
+        error_messages={'required': 'Password must not be empty'},
+        help_text=('Password must be equal'),
+        validators=[verifyStrongPassword],
         label='Password confirm'
     )
 
@@ -78,10 +71,3 @@ class RegisterForm(forms.ModelForm):
         if password != password_confirm:
             error = ValidationError('Password and password validation must be the same', code='invalid')
             raise ValidationError({'password': error, 'password_confirm': error})
-
-
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(
-        widget=forms.PasswordInput()
-    )

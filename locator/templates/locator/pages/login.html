@@ -9,14 +9,14 @@
 
 {% if request.user.is_authenticated %}
     <h6>Usuário logado: {{request.user.username}}</h6>
-    <form action="{% url 'logoutAccess' %}" method="POST">
+    <form action="{% url 'logoutAction' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="username" value="{{request.user.username}}" />
         <button type="submit">Sair</button>
     </form>
 
 {% else %}
-    <form action="{% url 'loginAccess' %}" method="POST">
+    <form action="{% url 'loginAction' %}" method="POST">
         {% csrf_token %}
         {{form}}
 
