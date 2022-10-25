@@ -67,7 +67,7 @@ def registerAction(request):
         user.set_password(user.password)
         user.save()
         print(user)
-        messages.success(request, 'Your user is created, please log in.')
+        messages.success(request, 'Seu usuário foi criado com sucesso, faça o login')
         del (request.session['form_data'])
         return redirect(reverse('loginForm'))
 
