@@ -5,29 +5,48 @@
 {% endblock title %}
 
 {% block content %}
-<h1>Login</h1>
+<div class="w-100 d-flex flex-column align-items-center mt-3">
+    <h1>Login</h1>
 
-{% if request.user.is_authenticated %}
-    <h6>Usuário logado: {{request.user.username}}</h6>
-    <form action="{% url 'logoutAction' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="username" value="{{request.user.username}}" />
-        <button type="submit">Sair</button>
-    </form>
-
-{% else %}
-    <form action="{% url 'loginAction' %}" method="POST">
-        {% csrf_token %}
-        {{form}}
-
-        <div class="input-group">
-            <button type="submit">Logar</button>
+    {% if request.user.is_authenticated %}
+        <div class="mt-1">
+            <h6>Usuário logado: {{request.user.username}}</h6>
+            <form action="{% url 'logoutAction' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="username" value="{{request.user.username}}" />
+                <div class="d-grid gap-2 text-center mt-3 mb-3">
+                    <button type="submit" class="btn btn-primary btn-block">Sair</button>
+                </div>
+            </form>
         </div>
 
+    {% else %}
         {% if form.errors %}
-            <h6>Foram encontrados erros no formulário, confira os dados</h6>
+            <div class="alert alert-danger mt-3" role="alert">
+                Foram encontrados erros no formulário, confira os dados inseridos
+            </div>
         {% endif %}
-    </form>
 
+        <form action="{% url 'loginAction' %}" method="POST">
+            {% csrf_token %}
+
+            <div class="d-flex flex-column mt-3">
+                {% for field in form %}
+                    <div class="mb-2">
+                        <label for="{{field.id_for_label}}" class="form-label">{{field.label}}</label>
+
+                        {{field.errors}}
+                        {{field}}
+
+                        <p class="form-text">{{field.help_text}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="d-grid gap-2 text-center mt-3 mb-3">
+                <button type="submit" class="btn btn-primary btn-block">Logar</button>
+            </div>
+        </form>
+</div>
 {% endif %}
 {% endblock content %}

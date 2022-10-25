@@ -5,33 +5,35 @@
 {% endblock title %}
 
 {% block content %}
-<h1>Registrar</h1>
-
-<form action="{% url 'registerAction' %}" method="POST">
-    {% csrf_token %}
-
-    <div>
-        {% for field in form %}
-            <div class="input-group">
-                <label for="{{field.id_for_label}}">{{field.label}}</label>
-                {{field}}
-
-                {% if field.help_text %}
-                    <p>{{field.help_text}}</p>
-                {% endif %}
-
-                {{field.errors}}
-            </div>
-        {% endfor %}
-    </div>
-
-    <div class="input-group">
-        <button type="submit">Registar</button>
-    </div>
+<div class="w-100 d-flex flex-column align-items-center mt-3">
+    <h1>Registrar</h1>
 
     {% if form.errors %}
-            <h6>Foram encontrados erros no formulário, confira os dados</h6>
+        <div class="alert alert-danger mt-3" role="alert">
+            Foram encontrados erros no formulário, confira os dados inseridos
+        </div>
     {% endif %}
 
-</form>
+    <form action="{% url 'registerAction' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="d-flex flex-column mt-3">
+            {% for field in form %}
+                <div class="mb-2">
+                    <label for="{{field.id_for_label}}" class="form-label">{{field.label}}</label>
+
+                    {{field.errors}}
+                    {{field}}
+
+                    <p class="form-text">{{field.help_text}}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="d-grid gap-2 text-center mt-3 mb-3">
+            <button type="submit" class="btn btn-primary btn-block">Criar Usuário</button>
+        </div>
+    </form>
+
+</div>
 {% endblock content %}

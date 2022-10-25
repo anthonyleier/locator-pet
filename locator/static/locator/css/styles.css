@@ -56,3 +56,8 @@ body {
     background-color: var(--background-element);
     color: var(--text);
 }
+
+.errorlist {
+   color: red;
+   font-size: 0.8rem;
+}
