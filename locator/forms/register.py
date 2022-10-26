@@ -4,17 +4,6 @@ from django.core.exceptions import ValidationError
 from utils.functions import addAttr, addPlaceholder, verifyStrongPassword
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput())
-
-    addAttr(username, 'class', 'form-control')
-    addAttr(password, 'class', 'form-control')
-
-    username.label = 'Usuário'
-    password.label = 'Senha'
-
-
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = User

@@ -1,14 +1,17 @@
 import os
 from django.db.models import Q
-from locator.models import Post
 from django.urls import reverse
 from django.http import Http404
 from django.contrib import messages
-from utils.pagination import makePagination
-from locator.forms import RegisterForm, LoginForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render, get_object_or_404
+
+from locator.models import Post
+from utils.pagination import makePagination
+
+from locator.forms.login import LoginForm
+from locator.forms.register import RegisterForm
 
 
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))

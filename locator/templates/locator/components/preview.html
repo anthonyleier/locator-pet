@@ -7,7 +7,7 @@
 
     <p>{{ post.description }}</p>
 
-    {% if post.autor.first_name %}
+    {% if post.autor.first_name and post.autor.last_name %}
         <p>{{ post.autor.first_name }} {{ post.autor.last_name }}</p>
     {% else %}
         <p>{{ post.autor.username }}</p>

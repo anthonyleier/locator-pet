@@ -3,6 +3,7 @@
     --background-element: grey;
     --title: purple;
     --text: black;
+    --danger: red;
 }
 
 a {
@@ -20,7 +21,6 @@ body {
 
 .navbar>div>a {
     color: var(--title);
-
 }
 
 .paginator {
@@ -29,7 +29,7 @@ body {
 }
 
 .current-page {
-    color: red;
+    color: var(--danger);
     font-size: 2vw;
     margin: 0px 5px 0px 5px;
 }
@@ -58,6 +58,6 @@ body {
 }
 
 .errorlist {
-   color: red;
-   font-size: 0.8rem;
+    color: var(--danger);
+    font-size: 0.8rem;
 }
