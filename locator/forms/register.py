@@ -32,8 +32,15 @@ class RegisterForm(forms.ModelForm):
     username = forms.CharField(
         required=True,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: joao.silva'}),
-        error_messages={'required': 'Usuário não pode ser vazio.'},
-        label='Úsuário'
+        error_messages={
+            'required': 'Usuário não pode ser vazio.',
+            'min_length': 'Usuário deve ter no mínimo 4 caracteres',
+            'max_length': 'Usuário deve ter no máximo 150 caracteres'
+        },
+        help_text=('Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.'),
+        label='Usuário',
+        min_length=4,
+        max_length=150
     )
 
     email = forms.CharField(
