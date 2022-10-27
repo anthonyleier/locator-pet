@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from utils.functions import addAttr, addPlaceholder, verifyStrongPassword
+from utils.functions import verifyExistingEmail, verifyStrongPassword
 
 
 class RegisterForm(forms.ModelForm):
@@ -15,25 +15,38 @@ class RegisterForm(forms.ModelForm):
             'password'
         ]
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        addPlaceholder(self.fields['first_name'], 'Ex.: John')
-        addPlaceholder(self.fields['last_name'], 'Ex.: Smith')
-        addPlaceholder(self.fields['username'], 'Ex.: jonh.smith')
-        addPlaceholder(self.fields['email'], 'Ex.: jonh.smith@gmail.com')
-        addPlaceholder(self.fields['password'], 'Sua senha')
-        addPlaceholder(self.fields['password_confirm'], 'Sua senha novamente')
+    first_name = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: João'}),
+        error_messages={'required': 'Primeiro nome não pode ser vazio.'},
+        label='Primeiro nome'
+    )
 
-        addAttr(self.fields['first_name'], 'class', 'form-control')
-        addAttr(self.fields['last_name'], 'class', 'form-control')
-        addAttr(self.fields['username'], 'class', 'form-control')
-        addAttr(self.fields['email'], 'class', 'form-control')
-        addAttr(self.fields['password'], 'class', 'form-control')
-        addAttr(self.fields['password_confirm'], 'class', 'form-control')
+    last_name = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Silva'}),
+        error_messages={'required': 'Último nome não pode ser vazio.'},
+        label='Último nome'
+    )
+
+    username = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: joao.silva'}),
+        error_messages={'required': 'Usuário não pode ser vazio.'},
+        label='Úsuário'
+    )
+
+    email = forms.CharField(
+        required=True,
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: joao.silva@gmail.com'}),
+        error_messages={'required': 'Email não pode ser vazio.'},
+        validators=[verifyExistingEmail],
+        label='Email'
+    )
 
     password = forms.CharField(
         required=True,
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Sua senha'}),
         error_messages={'required': 'Senha não pode ser vazia.'},
         help_text=('Necessário conter uma letra minúscula, uma letra maiúscula e um número. Tamanho mínimo de 8 caracteres.'),
         validators=[verifyStrongPassword],
@@ -42,17 +55,10 @@ class RegisterForm(forms.ModelForm):
 
     password_confirm = forms.CharField(
         required=True,
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Sua senha novamente'}),
         error_messages={'required': 'Confirmação de senha não pode ser vazia.'},
         label='Confirmação de senha'
     )
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        exists = User.objects.filter(email=email)
-
-        if exists:
-            raise ValidationError('Este email já está em uso.', code='invalid')
 
     def clean(self):
         cleaned_data = super().clean()

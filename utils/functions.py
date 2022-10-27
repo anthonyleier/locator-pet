@@ -1,4 +1,5 @@
 import re
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 
@@ -17,3 +18,9 @@ def verifyStrongPassword(password):
 
     if not regex.match(password):
         raise ValidationError(('Sua senha é muito fraca.'), code='invalid')
+
+
+def verifyExistingEmail(email):
+    exists = User.objects.filter(email=email)
+    if exists:
+        raise ValidationError('Este email já está em uso.', code='invalid')
