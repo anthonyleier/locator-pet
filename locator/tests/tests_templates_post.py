@@ -1,7 +1,9 @@
+import pytest
 from django.urls import reverse
 from locator.tests.tests_base import LocatorTestBase
 
 
+@pytest.mark.slow
 class LocatorTemplatePost(LocatorTestBase):
     def test_template(self):
         post = self.makePost()

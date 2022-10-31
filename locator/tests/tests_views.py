@@ -1,8 +1,10 @@
+import pytest
 from locator import views
 from django.test import TestCase
 from django.urls import reverse, resolve
 
 
+@pytest.mark.fast
 class LocatorViews(TestCase):
     def test_home(self):
         view = resolve(reverse('home'))

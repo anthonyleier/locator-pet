@@ -1,7 +1,9 @@
+import pytest
 from django.urls import reverse
 from django.test import TestCase
 
 
+@pytest.mark.fast
 class LocatorUrls(TestCase):
     def test_home(self):
         url = reverse('home')

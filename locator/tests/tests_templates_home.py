@@ -1,8 +1,10 @@
+import pytest
 from django.urls import reverse
 from unittest.mock import patch
 from locator.tests.tests_base import LocatorTestBase
 
 
+@pytest.mark.slow
 class LocatorTemplateHome(LocatorTestBase):
     def test_template(self):
         response = self.client.get(reverse('home'))

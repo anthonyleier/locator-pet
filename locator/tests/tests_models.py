@@ -1,9 +1,11 @@
+import pytest
 from locator.models import Post
 from parameterized import parameterized
 from django.core.exceptions import ValidationError
 from locator.tests.tests_base import LocatorTestBase
 
 
+@pytest.mark.fast
 class LocatorModelsTest(LocatorTestBase):
     def setUp(self):
         self.author = self.makeAuthor()

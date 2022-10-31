@@ -1,9 +1,11 @@
+import pytest
+from django.urls import reverse
 from django.test import TestCase
 from parameterized import parameterized
 from locator.forms.register import RegisterForm
-from django.urls import reverse
 
 
+@pytest.mark.fast
 class LocatorFormsRegisterUnitTest(TestCase):
     @parameterized.expand([
         ('first_name', 'Ex.: João'),
