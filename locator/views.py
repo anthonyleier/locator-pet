@@ -1,6 +1,5 @@
 import os
 from django.db.models import Q
-from django.urls import reverse
 from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -12,6 +11,7 @@ from utils.pagination import makePagination
 
 from locator.forms.login import LoginForm
 from locator.forms.register import RegisterForm
+from locator.forms.post import PostForm
 
 
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
@@ -71,12 +71,16 @@ def registerAction(request):
         user.save()
         messages.success(request, 'Seu usuário foi criado com sucesso, faça o login')
         del (request.session['form_data'])
-        return redirect(reverse('loginForm'))
+        return redirect('loginForm')
 
     return redirect('registerForm')
 
 
 def loginForm(request):
+    authenticatedUser = request.user.is_authenticated
+    if authenticatedUser:
+        return redirect('dashboard')
+
     form = LoginForm()
     return render(request, 'locator/pages/login.html', context={'form': form})
 
@@ -95,13 +99,15 @@ def loginAction(request):
         if authenticatedUser:
             login(request, authenticatedUser)
             messages.success(request, 'Usuário logado com sucesso')
+            return redirect('dashboard')
+
         else:
             messages.error(request, 'Usuário inválido')
 
     else:
         messages.error(request, 'Erro na validação')
 
-    return redirect(reverse('loginForm'))
+    return redirect('loginForm')
 
 
 @login_required(login_url='loginForm')
@@ -114,3 +120,17 @@ def logoutAction(request):
 
     logout(request)
     return redirect('loginForm')
+
+
+@login_required(login_url='loginForm')
+def dashboard(request):
+    publishedPosts = Post.objects.filter(published=True, author=request.user)
+    notPublishedPosts = Post.objects.filter(published=False, author=request.user)
+    return render(request, 'locator/pages/dashboard.html', context={'publishedPosts': publishedPosts, 'notPublishedPosts': notPublishedPosts})
+
+
+@login_required(login_url='loginForm')
+def updatePost(request, id):
+    post = Post.objects.get(pk=id, published=False, author=request.user)
+    form = PostForm(request.POST or None, instance=post)
+    return render(request, 'locator/pages/update.html', context={'form': form})

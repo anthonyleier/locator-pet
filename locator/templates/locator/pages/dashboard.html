@@ -1,0 +1,42 @@
+{% extends 'locator/pages/base.html' %}
+
+{% block title %}
+<title>Login | Localizador Pet</title>
+{% endblock title %}
+
+{% block content %}
+<div class="w-100 d-flex flex-column align-items-center mt-3">
+    <h1>Dashboard</h1>
+
+        <div class="mt-1">
+            <h6>Usuário logado: {{request.user.username}}</h6>
+            <form action="{% url 'logoutAction' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="username" value="{{request.user.username}}" />
+                <div class="d-grid gap-2 text-center mt-3 mb-3">
+                    <button type="submit" class="btn btn-primary btn-block">Sair</button>
+                </div>
+            </form>
+        </div>
+
+        <div>
+            <h6>Posts pendentes</h6>
+            <ul>
+                {% for post in notPublishedPosts %}
+                    <li><a href="{% url 'updatePost' post.id %}">{{post.title}}</a>
+                {% empty %}
+                    <li><p>Você não tem posts pendentes</p></li>
+                {% endfor %}
+            </ul>
+
+            <h6>Posts publicadas</h6>
+            <ul>
+                {% for post in publishedPosts %}
+                    <li><a href="#">{{post.title}}</a>
+                {% empty %}
+                    <li><p>Você não tem posts publicados</p></li>
+                {% endfor %}
+            </ul>
+        </div>
+</div>
+{% endblock content %}
