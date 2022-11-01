@@ -16,5 +16,7 @@ urlpatterns = [
     path('logout/action', views.logoutAction, name="logoutAction"),
 
     path('dashboard', views.dashboard, name="dashboard"),
-    path('posts/update/<int:id>', views.updatePost, name="updatePost"),
+
+    path('posts/new', views.createPost, name="createPost"),
+    path('posts/edit/<int:id>', views.updatePost, name="updatePost"),
 ]

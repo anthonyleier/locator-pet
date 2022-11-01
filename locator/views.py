@@ -130,7 +130,28 @@ def dashboard(request):
 
 
 @login_required(login_url='loginForm')
+def createPost(request):
+    post = Post()
+    form = PostForm(request.POST or None, files=request.FILES or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.published = False
+        post.save()
+        messages.success(request, 'Seu post foi salvo com sucesso')
+        return redirect('createPost')
+    return render(request, 'locator/pages/create.html', context={'form': form})
+
+
+@login_required(login_url='loginForm')
 def updatePost(request, id):
     post = Post.objects.get(pk=id, published=False, author=request.user)
-    form = PostForm(request.POST or None, instance=post)
-    return render(request, 'locator/pages/update.html', context={'form': form})
+    form = PostForm(request.POST or None, instance=post, files=request.FILES or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.published = False
+        post.save()
+        messages.success(request, 'Seu post foi salvo com sucesso')
+        return redirect('updatePost', id)
+    return render(request, 'locator/pages/update.html', context={'form': form, 'id': id})
