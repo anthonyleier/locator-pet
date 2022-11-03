@@ -1,23 +1,22 @@
-from locator import views
+from locator.views import mainPages, postSystem, loginSystem
 from django.urls import path
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', mainPages.home, name='home'),
+    path('dashboard', mainPages.dashboard, name="dashboard"),
 
-    path('posts/search', views.search, name='search'),
-    path('posts/<int:id>', views.post, name='post'),
+    path('posts/search', postSystem.search, name='search'),
+    path('posts/<int:id>', postSystem.post, name='post'),
 
-    path('register', views.registerForm, name="registerForm"),
-    path('register/action', views.registerAction, name="registerAction"),
+    path('posts/new', postSystem.createPost, name="createPost"),
+    path('posts/edit/<int:id>', postSystem.updatePost, name="updatePost"),
+    path('posts/delete/<int:id>', postSystem.deletePost, name="deletePost"),
 
-    path('login', views.loginForm, name="loginForm"),
-    path('login/action', views.loginAction, name="loginAction"),
+    path('register', loginSystem.registerForm, name="registerForm"),
+    path('register/action', loginSystem.registerAction, name="registerAction"),
 
-    path('logout/action', views.logoutAction, name="logoutAction"),
+    path('login', loginSystem.loginForm, name="loginForm"),
+    path('login/action', loginSystem.loginAction, name="loginAction"),
 
-    path('dashboard', views.dashboard, name="dashboard"),
-
-    path('posts/new', views.createPost, name="createPost"),
-    path('posts/edit/<int:id>', views.updatePost, name="updatePost"),
-    path('posts/delete/<int:id>', views.deletePost, name="deletePost"),
+    path('logout/action', loginSystem.logoutAction, name="logoutAction"),
 ]
