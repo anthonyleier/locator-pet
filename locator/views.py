@@ -2,7 +2,7 @@ import os
 from django.db.models import Q
 from django.http import Http404
 from django.contrib import messages
-from django.template.defaultfilters import slugify
+from django.utils.text import slugify
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render, get_object_or_404
