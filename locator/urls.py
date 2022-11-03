@@ -19,4 +19,5 @@ urlpatterns = [
 
     path('posts/new', views.createPost, name="createPost"),
     path('posts/edit/<int:id>', views.updatePost, name="updatePost"),
+    path('posts/delete/<int:id>', views.deletePost, name="deletePost"),
 ]

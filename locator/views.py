@@ -2,6 +2,7 @@ import os
 from django.db.models import Q
 from django.http import Http404
 from django.contrib import messages
+from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render, get_object_or_404
@@ -137,9 +138,10 @@ def createPost(request):
         post = form.save(commit=False)
         post.author = request.user
         post.published = False
+        post.slug = slugify(post.title)
         post.save()
         messages.success(request, 'Seu post foi salvo com sucesso')
-        return redirect('createPost')
+        return redirect('dashboard')
     return render(request, 'locator/pages/create.html', context={'form': form})
 
 
@@ -155,3 +157,11 @@ def updatePost(request, id):
         messages.success(request, 'Seu post foi salvo com sucesso')
         return redirect('updatePost', id)
     return render(request, 'locator/pages/update.html', context={'form': form, 'id': id})
+
+
+@login_required(login_url='loginForm')
+def deletePost(request, id):
+    post = Post.objects.get(pk=id, published=False, author=request.user)
+    post.delete()
+    messages.success(request, "Post deletado com sucesso!")
+    return redirect('dashboard')
