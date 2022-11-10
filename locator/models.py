@@ -21,3 +21,9 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post', args=[self.id])
+
+
+class Profile(models.Model):
+    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=50, blank=True)
+    address = models.CharField(max_length=100, blank=True)

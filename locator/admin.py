@@ -1,5 +1,5 @@
 from django.contrib import admin
-from locator.models import Post
+from locator.models import Post, Profile
 
 
 @admin.register(Post)
@@ -14,3 +14,11 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ['title']
     }
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['id', 'author', 'phone', 'address']
+    search_fields = ['id', 'phone', 'address']
+    list_per_page = 10
+    ordering = ['-id']
