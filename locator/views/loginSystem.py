@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.utils.translation import gettext
 
 from locator.forms.login import LoginForm
 from locator.forms.register import RegisterForm

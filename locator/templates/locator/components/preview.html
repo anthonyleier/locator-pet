@@ -1,5 +1,6 @@
-<div class="card text-center shadow rounded p-3">
+{% load i18n %}
 
+<div class="card text-center shadow rounded p-3">
     <a href="{{ post.get_absolute_url }}">
         <img src="{{ post.image1.url }}" class="cover" />
         <h3 class="mt-3">{{ post.title }}</h3>
@@ -8,12 +9,11 @@
     <p>{{ post.description }}</p>
 
     {% if post.autor.first_name and post.autor.last_name %}
-        <p>{{ post.autor.first_name }} {{ post.autor.last_name }}</p>
+    <p>{{ post.autor.first_name }} {{ post.autor.last_name }}</p>
     {% else %}
-        <p>{{ post.autor.username }}</p>
+    <p>{{ post.autor.username }}</p>
     {% endif %}
 
-    <p>Criado em: {{ post.created_at | date:'d/m/Y' }} às {{ post.created_at | date:'H:i' }}</p>
-    <p>Atualizado em: {{ post.updated_at | date:'d/m/Y' }} às {{ post.updated_at | date:'H:i' }}</p>
-
+    <p>{% translate 'Created at:'%} {{ post.created_at | date:'d/m/Y' }} {% translate "at" %} {{ post.created_at | date:'H:i' }}</p>
+    <p>{% translate 'Updated at:'%} {{ post.updated_at | date:'d/m/Y' }} {% translate "at" %} {{ post.updated_at | date:'H:i' }}</p>
 </div>
