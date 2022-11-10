@@ -27,3 +27,6 @@ class Profile(models.Model):
     author = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return f"{self.author} | {self.phone} | {self.address}"

@@ -1,4 +1,4 @@
-from locator.views import mainPages, postSystem, loginSystem
+from locator.views import mainPages, postSystem, loginSystem, profiles
 from django.urls import path
 
 urlpatterns = [
@@ -19,4 +19,7 @@ urlpatterns = [
     path('login/action', loginSystem.loginAction, name="loginAction"),
 
     path('logout/action', loginSystem.logoutAction, name="logoutAction"),
+
+
+    path('profile/<int:id>', profiles.details, name="profileDetails"),
 ]
