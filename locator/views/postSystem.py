@@ -50,6 +50,7 @@ def createPost(request):
         post.save()
         messages.success(request, 'Seu post foi salvo com sucesso')
         return redirect('dashboard')
+        # rezise image here
     return render(request, 'locator/pages/create.html', context={'form': form})
 
 
@@ -64,6 +65,7 @@ def updatePost(request, id):
         post.save()
         messages.success(request, 'Seu post foi salvo com sucesso')
         return redirect('updatePost', id)
+        # rezise image here
     return render(request, 'locator/pages/update.html', context={'form': form, 'id': id})
 
 
@@ -71,5 +73,7 @@ def updatePost(request, id):
 def deletePost(request, id):
     post = Post.objects.get(pk=id, published=False, author=request.user)
     post.delete()
+
+    # delete images here
     messages.success(request, "Post deletado com sucesso!")
     return redirect('dashboard')
