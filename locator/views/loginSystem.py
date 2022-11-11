@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from django.utils.translation import gettext
+from django.utils.translation import gettext_lazy as _
 
 from locator.forms.login import LoginForm
 from locator.forms.register import RegisterForm
@@ -27,7 +27,7 @@ def registerAction(request):
         user = form.save(commit=False)
         user.set_password(user.password)
         user.save()
-        messages.success(request, 'Seu usuário foi criado com sucesso, faça o login')
+        messages.success(request, _('Seu usuário foi criado com sucesso, faça o login'))
         del (request.session['form_data'])
         return redirect('loginForm')
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-10 17:21-0300\n"
+"POT-Creation-Date: 2022-11-11 09:49-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: .\locator\templates\locator\components\preview.html:17
 msgid "Created at:"
 msgstr "Criado em:"
@@ -29,3 +30,7 @@ msgstr "às"
 #: .\locator\templates\locator\components\preview.html:18
 msgid "Updated at:"
 msgstr "Atualizado em:"
+
+#: .\locator\views\loginSystem.py:30
+msgid "Seu usuário foi criado com sucesso, faça o login"
+msgstr ""
