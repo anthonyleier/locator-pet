@@ -1,3 +1,4 @@
+from datetime import timedelta
 import os
 from pathlib import Path
 from django.contrib.messages import constants
@@ -23,8 +24,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'debug_toolbar',
+    'rest_framework',
+    'rest_framework_simplejwt',
     'locator',
 ]
 
@@ -116,6 +118,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Messages
 MESSAGE_TAGS = {
     constants.SUCCESS: 'alert-success',
     constants.WARNING: 'alert-warning',
@@ -130,5 +133,17 @@ INTERNAL_IPS = ['127.0.0.1']
 # Django REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+# Simple JWT
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'BLACKLIST_AFTER_ROTATION': False,
+    'SIGNING_KEY': os.environ.get('JWT_SECRET_KEY'),
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
