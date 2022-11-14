@@ -126,3 +126,9 @@ MESSAGE_TAGS = {
 
 # Django Debug Toolbar
 INTERNAL_IPS = ['127.0.0.1']
+
+# Django REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
+}

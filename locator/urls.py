@@ -25,6 +25,6 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('api/posts/', api.postsList, name='postsList'),
-    path('api/posts/<int:id>/', api.postDetail, name='postDetail'),
+    path('api/posts/', api.PostList.as_view(), name='postsList'),
+    path('api/posts/<int:id>/', api.PostDetail.as_view(), name='postDetail'),
 ]
