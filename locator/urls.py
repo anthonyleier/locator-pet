@@ -1,4 +1,4 @@
-from locator.views import mainPages, postSystem, loginSystem, profiles, api
+from locator.views import mainPages, postSystem, loginSystem, profiles, api, apiUser
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
@@ -30,6 +30,9 @@ urlpatterns += [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
-    path('api/posts/', api.PostList.as_view(), name='postsList'),
+    path('api/posts/', api.PostList.as_view(), name='postList'),
     path('api/posts/<int:id>/', api.PostDetail.as_view(), name='postDetail'),
+
+    path('api/users/', apiUser.UserList.as_view(), name='userList'),
+    path('api/users/<int:id>/', apiUser.UserDetail.as_view(), name='userDetail'),
 ]

@@ -3,48 +3,36 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 
-from django.shortcuts import get_object_or_404
-
-from locator.models import Post
-from locator.serializers import PostSerializer
+from locator.serializers import UserSerializer
 
 
-class PostList(APIView):
+class UserList(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        posts = Post.objects.filter(author=request.user).select_related('author')
-        serializer = PostSerializer(instance=posts, many=True)
+        serializer = UserSerializer(instance=request.user, many=False)
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = PostSerializer(data=request.data, many=False)
+        serializer = UserSerializer(data=request.data, many=False)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
 
-class PostDetail(APIView):
+class UserDetail(APIView):
     permission_classes = [IsAuthenticated]
 
-    def getPost(self, id):
-        user = self.request.user
-        post = get_object_or_404(Post.objects.filter(author=user), id=id)
-        return post
-
     def get(self, request, id):
-        post = self.getPost(request.user, id)
-        serializer = PostSerializer(instance=post)
+        serializer = UserSerializer(instance=request.user, many=False)
         return Response(serializer.data)
 
     def patch(self, request, id):
-        post = self.getPost(request.user, id)
-        serializer = PostSerializer(instance=post, data=request.data, many=False, partial=True)
+        serializer = UserSerializer(instance=request.user, data=request.data, many=False, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
     def delete(self, request, id):
-        post = self.getPost(request.user, id)
-        post.delete()
+        request.user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
