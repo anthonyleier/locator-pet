@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.pagination import PageNumberPagination
 
 from django.shortcuts import get_object_or_404
@@ -33,24 +33,29 @@ class PostList(ListCreateAPIView):
     #     return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
 
-class PostDetail(APIView):
-    def getPost(self, id):
-        post = get_object_or_404(Post.objects.select_related('author'), id=id)
-        return post
+class PostDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all().select_related('author')
+    serializer_class = PostSerializer
+    pagination_class = Paginator
 
-    def get(self, request, id):
-        post = self.getPost(id)
-        serializer = PostSerializer(instance=post)
-        return Response(serializer.data)
+    # def getPost(self, id):
+    #     post = get_object_or_404(Post.objects.select_related('author'), id=id)
+    #     return post
 
-    def patch(self, request, id):
-        post = self.getPost(id)
-        serializer = PostSerializer(instance=post, data=request.data, many=False, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+    # def get(self, request, id):
+    #     post = self.getPost(id)
+    #     serializer = PostSerializer(instance=post)
+    #     return Response(serializer.data)
 
-    def delete(self, request, id):
-        post = self.getPost(id)
-        post.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    # def patch(self, request, *args, **kwargs):
+    #     pk = kwargs.get('pk')
+    #     post = self.get_queryset().filter(pk=pk).first()
+    #     serializer = PostSerializer(instance=post, data=request.data, many=False, partial=True)
+    #     serializer.is_valid(raise_exception=True)
+    #     serializer.save()
+    #     return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+
+    # def delete(self, request, id):
+    #     post = self.getPost(id)
+    #     post.delete()
+    #     return Response(status=status.HTTP_204_NO_CONTENT)
