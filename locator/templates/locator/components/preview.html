@@ -6,7 +6,10 @@
             <p class="ms-3 text-start">{{ post.updated_at | date:'d/m/Y' }}</p>
         </div>
 
-        <img src="{{ post.image1.url }}" class="cover" />
+        {% if post.image1 %}
+            <img src="{{ post.image1.url }}" class="cover" />
+        {% endif %}
+
         <h3 class="mt-3">{{ post.title }}</h3>
         <p>Caçador-SC</p>
 

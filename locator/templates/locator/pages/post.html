@@ -1,23 +1,38 @@
 {% extends 'locator/pages/base.html' %}
-{% load static %}
 
 {% block title %}
 <title>{{ post.title }} | Localizador Pet</title>
 {% endblock title %}
 
 {% block content %}
-<div class="bg-light border border-dark p-2 m-2 text-center">
-    <img src="{{ post.image1.url }}" class="cover" />
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.description }}</p>
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            {% include 'locator/components/carousel.html' %}
+        </div>
 
-    {% if post.autor.first_name %}
-        <p>{{ post.autor.first_name }} {{ post.autor.last_name }}</p>
-    {% else %}
-        <p>{{ post.autor.username }}</p>
-    {% endif %}
+        <div class="h-100 col">
+            <h1>{{ post.title }}</h1>
 
-    <p>Criado em: {{ post.created_at | date:'d/m/Y' }} às {{ post.created_at | date:'H:i' }}</p>
-    <p>Atualizado em: {{ post.updated_at | date:'d/m/Y' }} às {{ post.updated_at | date:'H:i' }}</p>
+            {% if post.found %}
+                <span class="btn btn-success btn-sm mb-3">Encontrado</span>
+            {% else %}
+                <span class="btn btn-warning btn-sm mb-3">Desaparecido</span>
+            {% endif %}
+
+            <p>{{ post.description }}</p>
+
+            <div class="user-info border shadow my-5 py-4">
+                <a href="https://wa.me/+5549998048595">
+                    <i class="bi bi-person-fill"></i> {{ post.author.get_full_name }} - <i class="bi bi-telephone-fill"></i> (49) 998048595
+                </a>
+            </div>
+
+            <div class="mt-5">
+                <p>Post criado em: {{ post.created_at | date:'d/m/Y' }} às {{ post.created_at | date:'H:i' }}</p>
+                <p>Post atualizado em: {{ post.updated_at | date:'d/m/Y' }} às {{ post.updated_at | date:'H:i' }}</p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
