@@ -8,40 +8,49 @@
 <div class="w-100 d-flex flex-column align-items-center mt-3">
     <h1>Dashboard</h1>
 
-        <div class="mt-1">
-            <h6>Usuário logado: {{request.user.username}}</h6>
-            <a class="d-grid gap-2 text-center mt-3 mb-3 btn btn-primary btn-block" href="{% url 'createPost' %}">Criar novo post</a>
-            <form action="{% url 'logoutAction' %}" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="username" value="{{request.user.username}}" />
-                <div class="d-grid gap-2 text-center mt-3 mb-3">
-                    <button type="submit" class="btn btn-primary">Sair</button>
-                </div>
-            </form>
-        </div>
-
-        <div>
-            <h6>Posts pendentes</h6>
-            <ul>
-                {% for post in notPublishedPosts %}
-                    <li><a href="{% url 'updatePost' post.id %}">{{post.title}}</a>
-                    <form action="{% url 'deletePost' post.id %}" method="post" id="formDeletePost">
-                        {% csrf_token %}
-                        <button type="submit">❌</button>
-                    </form>
-                {% empty %}
-                    <li><p>Você não tem posts pendentes</p></li>
-                {% endfor %}
-            </ul>
-
-            <h6>Posts publicadas</h6>
-            <ul>
-                {% for post in publishedPosts %}
-                    <li><a href="#">{{post.title}}</a>
-                {% empty %}
-                    <li><p>Você não tem posts publicados</p></li>
-                {% endfor %}
+    <form action="{% url 'logoutAction' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="username" value="{{request.user.username}}" />
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{request.user.username}}</button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'createPost' %}">Criar novo post</a></li>
+                <li><button type="submit" class="not-a-button dropdown-item">Sair</button></li>
             </ul>
         </div>
+    </form>
+
+    <table class="table table-striped w-75 mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Título</th>
+                <th scope="col">Publicado</th>
+                <th scope="col">Encontrado</th>
+                <th scope="col">Usuário</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Excluir</th>
+                <th scope="col">Encontrou?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{post.id}}</td>
+                    <td>{{post.title}}</td>
+                    <td>{{post.published | yesno | title}}</td>
+                    <td>{{post.found | yesno | title}}</td>
+                    <td>{{post.author}}</td>
+                    <td><a href="{% url 'updatePost' post.id %}">📝</a></td>
+                    <td><form action="{% url 'deletePost' post.id %}" method="POST" id="formDeletePost">{% csrf_token %}<button type="submit" class="not-a-button">❌</button></form></td>
+                    <td><form action="{% url 'foundPost' post.id %}" method='POST' id='formFoundPost'>{% csrf_token %}<button type="submit" class="btn btn-primary btn-sm">Encontrei</button></form></td>
+                </tr>
+
+            {% empty %}
+                <tr><td colspan="8">Você não tem posts</td></tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock content %}

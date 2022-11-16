@@ -66,9 +66,18 @@ def updatePost(request, id):
         post.published = False
         post.save()
         messages.success(request, 'Seu post foi salvo com sucesso')
-        return redirect('updatePost', id)
+        return redirect('dashboard')
         # rezise image here
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'update', 'id': id})
+
+
+@login_required(login_url='loginForm')
+def foundPost(request, id):
+    post = Post.objects.get(pk=id, author=request.user)
+    post.found = True
+    post.save()
+    messages.success(request, 'Que notícia maravilhosa!')
+    return redirect('dashboard')
 
 
 @login_required(login_url='loginForm')

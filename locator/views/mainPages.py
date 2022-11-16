@@ -21,6 +21,5 @@ def home(request):
 
 @login_required(login_url='loginForm')
 def dashboard(request):
-    publishedPosts = Post.objects.filter(published=True, author=request.user)
-    notPublishedPosts = Post.objects.filter(published=False, author=request.user)
-    return render(request, 'locator/pages/dashboard.html', context={'publishedPosts': publishedPosts, 'notPublishedPosts': notPublishedPosts})
+    posts = Post.objects.filter(author=request.user)
+    return render(request, 'locator/pages/dashboard.html', context={'posts': posts})

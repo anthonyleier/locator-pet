@@ -54,5 +54,8 @@ body {
 
 .user-info {
     font-weight: bold;
-    background-color: var(--attencion);
+}
+
+.not-a-button {
+    border: 0;
 }
