@@ -4,7 +4,7 @@
     --primary: purple;
     --text: black;
     --danger: red;
-    --attencion: #FFFFBD;
+    --attention: #FFFFBD;
 }
 
 * {
@@ -18,10 +18,6 @@ a {
 
 body {
     background-color: var(--background-primary);
-}
-
-.navbar>div>a {
-    color: var(--text);
 }
 
 .paginator {
