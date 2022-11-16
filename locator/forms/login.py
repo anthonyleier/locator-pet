@@ -1,13 +1,17 @@
 from django import forms
-from utils.functions import addAttr
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: joao.silva'}),
+        error_messages={'required': 'Login não pode ser vazio.'},
+        label='Usuário'
+    )
 
-    addAttr(username, 'class', 'form-control')
-    addAttr(password, 'class', 'form-control')
-
-    username.label = 'Usuário'
-    password.label = 'Senha'
+    password = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Sua senha'}),
+        error_messages={'required': 'Senha não pode ser vazia.'},
+        label='Senha'
+    )

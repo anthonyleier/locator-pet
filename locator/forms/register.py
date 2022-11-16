@@ -7,13 +7,7 @@ from utils.functions import verifyExistingEmail, verifyStrongPassword
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = [
-            'first_name',
-            'last_name',
-            'username',
-            'email',
-            'password'
-        ]
+        fields = ['first_name', 'last_name', 'username', 'email', 'password']
 
     first_name = forms.CharField(
         required=True,
@@ -31,6 +25,8 @@ class RegisterForm(forms.ModelForm):
 
     username = forms.CharField(
         required=True,
+        min_length=4,
+        max_length=150,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: joao.silva'}),
         error_messages={
             'required': 'Usuário não pode ser vazio.',
@@ -38,9 +34,7 @@ class RegisterForm(forms.ModelForm):
             'max_length': 'Usuário deve ter no máximo 150 caracteres'
         },
         help_text=('Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.'),
-        label='Usuário',
-        min_length=4,
-        max_length=150
+        label='Usuário'
     )
 
     email = forms.CharField(
