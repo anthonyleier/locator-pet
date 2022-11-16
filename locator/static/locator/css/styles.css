@@ -1,9 +1,13 @@
 :root {
-    --background: white;
-    --background-element: grey;
-    --title: purple;
+    --background-primary: white;
+    --background-secondary: grey;
+    --primary: purple;
     --text: black;
     --danger: red;
+}
+
+* {
+    font-family: 'Quicksand', sans-serif;
 }
 
 a {
@@ -12,30 +16,25 @@ a {
 }
 
 body {
-    background-color: var(--background);
-}
-
-.navbar {
-    background-color: var(--background-element);
+    background-color: var(--background-primary);
 }
 
 .navbar>div>a {
-    color: var(--title);
+    color: var(--text);
 }
 
 .paginator {
     text-align: center;
-    background-color: var(--background-element);
 }
 
 .current-page {
-    color: var(--danger);
+    color: var(--primary);
     font-size: 2vw;
     margin: 0px 5px 0px 5px;
 }
 
 .page {
-    color: white;
+    color: var(--background-secondary);
     font-size: 2vw;
     margin: 0px 5px 0px 5px;
 }
@@ -49,12 +48,6 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 30px;
-}
-
-.card {
-    position: relative;
-    background-color: var(--background-element);
-    color: var(--text);
 }
 
 .errorlist {

@@ -1,38 +1,22 @@
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand logo" href="{% url 'home' %}">Localizador Pet</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false"> Dropdown </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
-            <form action="{% url 'search' %}" class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{ searchTerm }}" required/>
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+<div class="w-100 d-flex flex-row justify-content-center mt-5 mb-5">
+    <div class="w-75 d-flex flex-row justify-content-center">
+        <div class="w-75 d-flex flex-row justify-content-start">
+            <a href="{% url 'home' %}">
+                <img src="https://www.petfinder.com/themes/custom/consumer_react/logo.svg" />
+            </a>
         </div>
+
+        {% if request.user.is_authenticated %}
+            <div class="w-25 d-flex flex-row justify-content-end">
+                <a href="{% url 'dashboard' %}"><b>{{request.user.get_full_name}}</b></a>
+            </div>
+
+        {% else %}
+            <div class="w-25 d-flex flex-row justify-content-between">
+                <a href="{% url 'registerForm' %}"><b>Sign Up</b></a>
+                <a href="{% url 'loginForm' %}"><b>Log In</b></a>
+            </div>
+
+        {% endif %}
     </div>
-</nav>
+</div>
