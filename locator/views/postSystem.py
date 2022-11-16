@@ -2,6 +2,7 @@ import os
 from django.db.models import Q
 from django.http import Http404
 from django.contrib import messages
+from django.urls import reverse
 from django.utils.text import slugify
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
@@ -51,7 +52,8 @@ def createPost(request):
         messages.success(request, 'Seu post foi salvo com sucesso')
         return redirect('dashboard')
         # rezise image here
-    return render(request, 'locator/pages/create.html', context={'form': form})
+
+    return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'create', 'id': 0})
 
 
 @login_required(login_url='loginForm')
@@ -66,7 +68,7 @@ def updatePost(request, id):
         messages.success(request, 'Seu post foi salvo com sucesso')
         return redirect('updatePost', id)
         # rezise image here
-    return render(request, 'locator/pages/update.html', context={'form': form, 'id': id})
+    return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'update', 'id': id})
 
 
 @login_required(login_url='loginForm')

@@ -14,7 +14,7 @@
         </div>
     {% endif %}
 
-    <form action="{% url 'loginAction' %}" method="POST">
+    <form action="{% url 'loginAction' %}" method="POST" class="w-50">
         {% csrf_token %}
 
         <div class="d-flex flex-column mt-3">
