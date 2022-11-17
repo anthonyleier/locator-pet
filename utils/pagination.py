@@ -37,7 +37,9 @@ def makePaginationInfo(paginator, tinyRangeSize, currentPage):
 def makePagination(request, querySet, qtyPerPage):
     try:
         requestPage = int(request.GET.get('page', 1))
+
     except ValueError:
+        print("Número de página inválida, redirecionando para a primeira")
         requestPage = 1
 
     paginator = Paginator(querySet, qtyPerPage)

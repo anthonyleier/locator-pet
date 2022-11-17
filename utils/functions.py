@@ -1,9 +1,10 @@
 import os
 import re
 from PIL import Image
+
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 
 def verifyStrongPassword(password):
@@ -30,7 +31,7 @@ def resizeImage(image, newWidth=800, quality=50):
             width = newWidth
 
         newImage = image.resize((width, height), Image.LANCZOS)
-        newImage.save(path, optimize=True, quality=50)
+        newImage.save(path, optimize=True, quality=quality)
 
         image.close()
         newImage.close()
