@@ -2,6 +2,7 @@ import os
 
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 from locator.models import Post
@@ -12,7 +13,8 @@ QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
 
 
 def detailPost(request, id):
-    post = get_object_or_404(Post, id=id)
+    user = request.user if not request.user.is_anonymous else None
+    post = get_object_or_404(Post.objects.filter(Q(published=True) | Q(user=user)), Q(id=id))
     return render(request, 'locator/pages/post.html', context={'post': post})
 
 
