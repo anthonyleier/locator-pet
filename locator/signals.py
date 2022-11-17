@@ -1,7 +1,9 @@
 import os
+
 from django.dispatch import receiver
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save, pre_save, pre_delete
+from django.db.models.signals import post_save, pre_delete
+
 from locator.models import Profile, Post
 
 
@@ -16,12 +18,12 @@ def deleteImages(instance):
 
 
 @receiver(post_save, sender=User)
-def createProfile(sender, instance, created, *args, **kwargs):
+def createProfile(instance, created, *args, **kwargs):
     if created:
         profile = Profile.objects.create(user=instance)
         profile.save()
 
 
 @receiver(pre_delete, sender=Post)
-def deleteImagesOnDeletePost(sender, instance, *args, **kwargs):
+def deleteImagesOnDeletePost(instance, *args, **kwargs):
     deleteImages(instance)
