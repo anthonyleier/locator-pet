@@ -10,9 +10,9 @@ class LocatorUrls(TestCase):
         self.assertEqual(url, '/')
 
     def test_post(self):
-        url = reverse('post', args=[2])
-        self.assertEqual(url, '/posts/2')
+        url = reverse('detailPost', args=[2])
+        self.assertEqual(url, '/posts/2/')
 
     def test_search(self):
         url = reverse('search')
-        self.assertEqual(url, '/posts/search')
+        self.assertEqual(url, '/posts/search/')

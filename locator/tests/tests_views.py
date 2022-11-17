@@ -11,7 +11,7 @@ class LocatorViews(TestCase):
         self.assertIs(view.func, views.home)
 
     def test_post(self):
-        view = resolve(reverse('post', args=[2]))
+        view = resolve(reverse('detailPost', args=[2]))
         self.assertIs(view.func, views.post)
 
     def test_search(self):

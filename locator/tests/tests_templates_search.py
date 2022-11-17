@@ -16,11 +16,10 @@ class LocatorTemplateSearch(LocatorTestBase):
 
     def test_safety(self):
         response = self.client.get(reverse('search') + '?q=<virus>')
-        self.assertIn('&lt;virus&gt;', response.content.decode('UTF8'))
         self.assertNotIn('<virus>', response.content.decode('UTF8'))
 
     def test_titles(self):
-        user = self.makeAuthor()
+        user = self.makeUser()
         title1 = 'This is post one'
         title2 = 'This is post two'
 
@@ -42,7 +41,7 @@ class LocatorTemplateSearch(LocatorTestBase):
         self.assertIn(post2, responseTotal.context['page'])
 
     def test_pagination(self):
-        user = self.makeAuthor()
+        user = self.makeUser()
         title1 = 'This is post one'
         title2 = 'This is post two'
         title3 = 'This is post three'
@@ -55,20 +54,21 @@ class LocatorTemplateSearch(LocatorTestBase):
         post4 = self.makePost(user=user, title=title4, slug='four')
         post5 = self.makePost(user=user, title=title5, slug='five')
 
-        response = self.client.get(reverse('search') + "?q=POST")
-        self.assertIn(post5, response.context['page'])
-        self.assertIn(post4, response.context['page'])
-        self.assertIn(post3, response.context['page'])
-        self.assertIn(post2, response.context['page'])
-        self.assertNotIn(post1, response.context['page'])
+        with patch('locator.views.main.QTY_PER_PAGE', new=4):
+            response = self.client.get(reverse('search') + "?q=POST")
+            self.assertIn(post5, response.context['page'])
+            self.assertIn(post4, response.context['page'])
+            self.assertIn(post3, response.context['page'])
+            self.assertIn(post2, response.context['page'])
+            self.assertNotIn(post1, response.context['page'])
 
     def test_pagination_qty(self):
-        user = self.makeAuthor()
+        user = self.makeUser()
         for i in range(8):
             kwargs = {'title': f'fake-title-{i}', 'slug': f'fake-slug-{i}', 'user': user}
             self.makePost(**kwargs)
 
-        with patch('locator.views.QTY_PER_PAGE', new=3):
+        with patch('locator.views.main.QTY_PER_PAGE', new=3):
             response = self.client.get(reverse('search') + "?q=FAKE")
             paginationInfo = response.context['paginationInfo']
             paginator = paginationInfo.get('paginator')
