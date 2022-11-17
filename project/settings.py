@@ -1,6 +1,6 @@
-from datetime import timedelta
 import os
 from pathlib import Path
+from datetime import timedelta
 from django.contrib.messages import constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,18 +80,10 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 
@@ -119,6 +111,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Messages
+# https://docs.djangoproject.com/en/4.1/ref/contrib/messages/
+
 MESSAGE_TAGS = {
     constants.SUCCESS: 'alert-success',
     constants.WARNING: 'alert-warning',
@@ -128,9 +122,13 @@ MESSAGE_TAGS = {
 }
 
 # Django Debug Toolbar
+# https://django-debug-toolbar.readthedocs.io/en/latest/
+
 INTERNAL_IPS = ['127.0.0.1']
 
 # Django REST Framework
+# https://www.django-rest-framework.org/
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
@@ -140,6 +138,8 @@ REST_FRAMEWORK = {
 }
 
 # Simple JWT
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
