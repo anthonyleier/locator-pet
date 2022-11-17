@@ -13,7 +13,7 @@ class PostList(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        posts = Post.objects.filter(author=request.user).select_related('author')
+        posts = Post.objects.filter(user=request.user).select_related('user')
         serializer = PostSerializer(instance=posts, many=True)
         return Response(serializer.data)
 
@@ -29,7 +29,7 @@ class PostDetail(APIView):
 
     def getPost(self, id):
         user = self.request.user
-        post = get_object_or_404(Post.objects.filter(author=user), id=id)
+        post = get_object_or_404(Post.objects.filter(user=user), id=id)
         return post
 
     def get(self, request, id):

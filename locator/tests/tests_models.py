@@ -8,8 +8,8 @@ from locator.tests.tests_base import LocatorTestBase
 @pytest.mark.fast
 class LocatorModelsTest(LocatorTestBase):
     def setUp(self):
-        self.author = self.makeAuthor()
-        self.post = self.makePost(author=self.author)
+        self.user = self.makeAuthor()
+        self.post = self.makePost(user=self.user)
 
     def test_post_title(self):
         self.post.title = '$' * 70
@@ -46,7 +46,7 @@ class LocatorModelsTest(LocatorTestBase):
             description='Poodle fugiu na tarde de ontem',
             slug='sumiu-o-poodle',
             status='Encontrado',
-            author=self.author)
+            user=self.user)
         post.full_clean()  # Validation
         post.save()
         self.assertFalse(post.published)

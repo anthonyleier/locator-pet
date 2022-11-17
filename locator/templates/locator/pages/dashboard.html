@@ -40,7 +40,7 @@
                     <td>{{post.title}}</td>
                     <td>{{post.published | yesno | title}}</td>
                     <td>{{post.found | yesno | title}}</td>
-                    <td>{{post.author}}</td>
+                    <td>{{post.user}}</td>
                     <td><a href="{% url 'updatePost' post.id %}">📝</a></td>
                     <td><form action="{% url 'deletePost' post.id %}" method="POST" id="formDeletePost">{% csrf_token %}<button type="submit" class="not-a-button">❌</button></form></td>
                     <td><form action="{% url 'foundPost' post.id %}" method='POST' id='formFoundPost'>{% csrf_token %}<button type="submit" class="btn btn-primary btn-sm">Encontrei</button></form></td>

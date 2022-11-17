@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class LocatorTestBase(TestCase):
-    def makeAuthor(
+    def makeuser(
             self,
             first_name="Julio",
             last_name="Santos",
@@ -27,10 +27,10 @@ class LocatorTestBase(TestCase):
             status='Desaparecido',
             published=True,
             image1='locator/upload/2022/10/10/doberman.jpg',
-            author=None):
+            user=None):
 
-        if not author:
-            author = self.makeAuthor()
+        if not user:
+            user = self.makeuser()
 
         return Post.objects.create(
             title=title,
@@ -39,4 +39,4 @@ class LocatorTestBase(TestCase):
             status=status,
             published=published,
             image1=image1,
-            author=author)
+            user=user)

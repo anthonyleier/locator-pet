@@ -23,7 +23,7 @@ def createPost(request):
     form = PostForm(request.POST or None, files=request.FILES or None)
     if form.is_valid():
         post = form.save(commit=False)
-        post.author = request.user
+        post.user = request.user
         post.published = False
         post.slug = slugify(post.title)
         post.save()
@@ -39,11 +39,11 @@ def createPost(request):
 
 @login_required(login_url='loginForm')
 def updatePost(request, id):
-    post = Post.objects.get(pk=id, published=False, author=request.user)
+    post = Post.objects.get(pk=id, published=False, user=request.user)
     form = PostForm(request.POST or None, instance=post, files=request.FILES or None)
     if form.is_valid():
         post = form.save(commit=False)
-        post.author = request.user
+        post.user = request.user
         post.published = False
         post.save()
 
@@ -58,7 +58,7 @@ def updatePost(request, id):
 
 @login_required(login_url='loginForm')
 def foundPost(request, id):
-    post = Post.objects.get(pk=id, author=request.user)
+    post = Post.objects.get(pk=id, user=request.user)
     post.found = True
     post.save()
     messages.success(request, 'Que notícia maravilhosa!')
@@ -67,7 +67,7 @@ def foundPost(request, id):
 
 @login_required(login_url='loginForm')
 def deletePost(request, id):
-    post = Post.objects.get(pk=id, published=False, author=request.user)
+    post = Post.objects.get(pk=id, published=False, user=request.user)
     post.delete()
     messages.success(request, "Post deletado com sucesso!")
     return redirect('dashboard')

@@ -34,18 +34,18 @@ class LocatorTemplateHome(LocatorTestBase):
         self.assertIn('Nenhum post encontrado', response.content.decode('UTF8'))
 
     def test_pagination(self):
-        author = self.makeAuthor()
+        user = self.makeAuthor()
         title1 = 'This is post one'
         title2 = 'This is post two'
         title3 = 'This is post three'
         title4 = 'This is post four'
         title5 = 'This is post five'
 
-        post1 = self.makePost(author=author, title=title1, slug='one')
-        post2 = self.makePost(author=author, title=title2, slug='two')
-        post3 = self.makePost(author=author, title=title3, slug='three')
-        post4 = self.makePost(author=author, title=title4, slug='four')
-        post5 = self.makePost(author=author, title=title5, slug='five')
+        post1 = self.makePost(user=user, title=title1, slug='one')
+        post2 = self.makePost(user=user, title=title2, slug='two')
+        post3 = self.makePost(user=user, title=title3, slug='three')
+        post4 = self.makePost(user=user, title=title4, slug='four')
+        post5 = self.makePost(user=user, title=title5, slug='five')
 
         response = self.client.get(reverse('home'))
         self.assertIn(post5, response.context['page'])
@@ -55,9 +55,9 @@ class LocatorTemplateHome(LocatorTestBase):
         self.assertNotIn(post1, response.context['page'])
 
     def test_pagination_qty(self):
-        author = self.makeAuthor()
+        user = self.makeAuthor()
         for i in range(8):
-            kwargs = {'title': f'fake-title-{i}', 'slug': f'fake-slug-{i}', 'author': author}
+            kwargs = {'title': f'fake-title-{i}', 'slug': f'fake-slug-{i}', 'user': user}
             self.makePost(**kwargs)
 
         with patch('locator.views.QTY_PER_PAGE', new=3):

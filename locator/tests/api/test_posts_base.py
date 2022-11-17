@@ -20,7 +20,7 @@
 #             'username': username,
 #             'password': password,
 #         }
-#         user = self.make_author(
+#         user = self.make_user(
 #             username=userdata.get('username'),
 #             password=userdata.get('password')
 #         )
@@ -138,11 +138,11 @@
 #         recipe = self.make_recipe()
 #         access_data = self.get_auth_data(username='test_patch')
 #         jwt_access_token = access_data.get('jwt_access_token')
-#         author = access_data.get('user')
-#         recipe.author = author
+#         user = access_data.get('user')
+#         recipe.user = user
 #         recipe.save()
 
-#         wanted_new_title = f'The new title updated by {author.username}'
+#         wanted_new_title = f'The new title updated by {user.username}'
 
 #         # Action (Ação)
 #         response = self.client.patch(
@@ -176,8 +176,8 @@
 #         )
 
 #         # This is the actual owner of the recipe
-#         author = access_data.get('user')
-#         recipe.author = author
+#         user = access_data.get('user')
+#         recipe.user = user
 #         recipe.save()
 
 #         # Action (Ação)

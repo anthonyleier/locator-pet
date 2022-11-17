@@ -14,7 +14,7 @@ class Post(models.Model):
     image1 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
     image2 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
     image3 = models.ImageField(upload_to='locator/upload/%Y/%m/%d/', null=True, blank=True)
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)  # Alterar aqui para User
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -24,9 +24,9 @@ class Post(models.Model):
 
 
 class Profile(models.Model):
-    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return f"{self.author} | {self.phone} | {self.address}"
+        return f"{self.user} | {self.phone} | {self.address}"
