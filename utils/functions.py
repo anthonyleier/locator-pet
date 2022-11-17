@@ -3,8 +3,11 @@ import re
 from PIL import Image
 
 from django.conf import settings
+from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+
+from locator.models import Post
 
 
 def verifyStrongPassword(password):
@@ -30,8 +33,22 @@ def resizeImage(image, newWidth=800, quality=50):
             height = (height * newWidth) / width
             width = newWidth
 
+        width = round(width)
+        height = round(height)
+
         newImage = image.resize((width, height), Image.LANCZOS)
         newImage.save(path, optimize=True, quality=quality)
 
         image.close()
         newImage.close()
+
+
+def makeSlug(text):
+    slug = slugify(text)
+    exists = Post.objects.filter(slug=slug)
+
+    if exists:
+        slug += "-new"
+        return makeSlug(slug)
+
+    return slug

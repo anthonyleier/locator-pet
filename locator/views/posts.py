@@ -2,12 +2,11 @@ import os
 
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
-from django.utils.text import slugify
 from django.contrib.auth.decorators import login_required
 
 from locator.models import Post
 from locator.forms.post import PostForm
-from utils.functions import resizeImage
+from utils.functions import resizeImage, makeSlug
 
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
 
@@ -25,7 +24,7 @@ def createPost(request):
         post = form.save(commit=False)
         post.user = request.user
         post.published = False
-        post.slug = slugify(post.title)
+        post.slug = makeSlug(post.title)
         post.save()
 
         resizeImage(post.image1)
