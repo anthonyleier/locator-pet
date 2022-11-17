@@ -42,5 +42,5 @@ def search(request):
 
 @login_required(login_url='loginForm')
 def dashboard(request):
-    posts = Post.objects.filter(user=request.user)
+    posts = Post.objects.filter(user=request.user).order_by('-id')
     return render(request, 'locator/pages/dashboard.html', context={'posts': posts})

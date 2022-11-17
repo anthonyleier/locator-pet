@@ -12,7 +12,7 @@ QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
 
 
 def detailPost(request, id):
-    post = get_object_or_404(Post, pk=id, published=True)
+    post = get_object_or_404(Post, id=id)
     return render(request, 'locator/pages/post.html', context={'post': post})
 
 
