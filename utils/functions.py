@@ -19,17 +19,18 @@ def verifyExistingEmail(email):
         raise ValidationError('Este email já está em uso.', code='invalid')
 
 
-def resizeImage(image, newWidth=800):
-    path = os.path.join(settings.MEDIA_ROOT, image.name)
-    image = Image.open(path)
-    width, height = image.size
+def resizeImage(image, newWidth=800, quality=50):
+    if image:
+        path = os.path.join(settings.MEDIA_ROOT, image.name)
+        image = Image.open(path)
+        width, height = image.size
 
-    if width > newWidth:
-        height = (height * newWidth) / width
-        width = newWidth
+        if width > newWidth:
+            height = (height * newWidth) / width
+            width = newWidth
 
-    newImage = image.resize((width, height), Image.LANCZOS)
-    newImage.save(path, optimize=True, quality=50)
+        newImage = image.resize((width, height), Image.LANCZOS)
+        newImage.save(path, optimize=True, quality=50)
 
-    image.close()
-    newImage.close()
+        image.close()
+        newImage.close()

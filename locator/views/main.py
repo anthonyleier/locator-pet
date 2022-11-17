@@ -1,5 +1,7 @@
 import os
+from django.http import Http404
 from django.shortcuts import render
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 from locator.models import Post
@@ -16,6 +18,25 @@ def home(request):
         'page': page,
         'tinyRange': paginationInfo.get('tinyRange'),
         'paginationInfo': paginationInfo
+    })
+
+
+def search(request):
+    searchTerm = request.GET.get('q', '').strip()
+
+    if not searchTerm:
+        raise Http404()
+
+    posts = Post.objects.filter(Q(Q(title__icontains=searchTerm) | Q(description__icontains=searchTerm)), published=True)
+    posts = posts.order_by('-id')
+    page, paginationInfo = makePagination(request, posts, QTY_PER_PAGE)
+
+    return render(request, 'locator/pages/home.html', context={
+        'searchTerm': searchTerm,
+        'page': page,
+        'tinyRange': paginationInfo.get('tinyRange'),
+        'paginationInfo': paginationInfo,
+        'additionalParam': f"&q={searchTerm}"
     })
 
 

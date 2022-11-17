@@ -1,26 +1,26 @@
-from locator.views import mainPages, postSystem, loginSystem, profiles, api, apiUser
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
+from locator.views import auth, main, posts
+from locator.views.api import posts as postsAPI
+from locator.views.api import users as usersAPI
+
 urlpatterns = [
-    path('', mainPages.home, name='home'),
-    path('dashboard/', mainPages.dashboard, name="dashboard"),
+    path('', main.home, name='home'),
+    path('dashboard/', main.dashboard, name="dashboard"),
+    path('posts/search/', main.search, name='search'),
 
-    path('posts/search/', postSystem.search, name='search'),
-    path('posts/<int:id>/', postSystem.post, name='post'),
+    path('posts/<int:id>/', posts.detailPost, name='detailPost'),
+    path('posts/new/', posts.createPost, name="createPost"),
+    path('posts/edit/<int:id>/', posts.updatePost, name="updatePost"),
+    path('posts/delete/<int:id>/', posts.deletePost, name="deletePost"),
+    path('posts/found/<int:id>/', posts.foundPost, name="foundPost"),
 
-    path('posts/new/', postSystem.createPost, name="createPost"),
-    path('posts/edit/<int:id>/', postSystem.updatePost, name="updatePost"),
-    path('posts/delete/<int:id>/', postSystem.deletePost, name="deletePost"),
-    path('posts/found/<int:id>/', postSystem.foundPost, name="foundPost"),
-
-    path('register/', loginSystem.registerForm, name="registerForm"),
-    path('register/action/', loginSystem.registerAction, name="registerAction"),
-
-    path('login/', loginSystem.loginForm, name="loginForm"),
-    path('login/action/', loginSystem.loginAction, name="loginAction"),
-
-    path('logout/action/', loginSystem.logoutAction, name="logoutAction"),
+    path('register/', auth.registerForm, name="registerForm"),
+    path('register/action/', auth.registerAction, name="registerAction"),
+    path('login/', auth.loginForm, name="loginForm"),
+    path('login/action/', auth.loginAction, name="loginAction"),
+    path('logout/action/', auth.logoutAction, name="logoutAction"),
 ]
 
 urlpatterns += [
@@ -28,9 +28,9 @@ urlpatterns += [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
-    path('api/posts/', api.PostList.as_view(), name='postList'),
-    path('api/posts/<int:id>/', api.PostDetail.as_view(), name='postDetail'),
+    path('api/posts/', postsAPI.PostList.as_view(), name='postList'),
+    path('api/posts/<int:id>/', postsAPI.PostDetail.as_view(), name='postDetail'),
 
-    path('api/users/', apiUser.UserList.as_view(), name='userList'),
-    path('api/users/<int:id>/', apiUser.UserDetail.as_view(), name='userDetail'),
+    path('api/users/', usersAPI.UserList.as_view(), name='userList'),
+    path('api/users/<int:id>/', usersAPI.UserDetail.as_view(), name='userDetail'),
 ]

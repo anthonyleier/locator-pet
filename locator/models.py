@@ -20,7 +20,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post', args=[self.id])
+        return reverse('detailPost', args=[self.id])
 
 
 class Profile(models.Model):

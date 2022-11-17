@@ -1,9 +1,9 @@
 from django.http import Http404
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from locator.forms.login import LoginForm
 from locator.forms.register import RegisterForm
@@ -51,22 +51,16 @@ def loginAction(request):
 
     form = LoginForm(request.POST)
     if form.is_valid():
-        authenticatedUser = authenticate(
-            username=form.cleaned_data.get('username', ''),
-            password=form.cleaned_data.get('password', '')
-        )
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        authenticatedUser = authenticate(username=username, password=password)
 
         if authenticatedUser:
             login(request, authenticatedUser)
             messages.success(request, 'Usuário logado com sucesso')
             return redirect('dashboard')
 
-        else:
-            messages.error(request, 'Usuário inválido')
-
-    else:
-        messages.error(request, 'Erro na validação')
-
+    messages.error(request, 'Usuário inválido')
     return redirect('loginForm')
 
 

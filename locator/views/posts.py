@@ -1,40 +1,18 @@
 import os
-from django.db.models import Q
-from django.http import Http404
+
 from django.contrib import messages
-from django.urls import reverse
+from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.text import slugify
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render, get_object_or_404
 
 from locator.models import Post
-from utils.pagination import makePagination
 from locator.forms.post import PostForm
-
+from utils.functions import resizeImage
 
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
 
 
-def search(request):
-    searchTerm = request.GET.get('q', '').strip()
-
-    if not searchTerm:
-        raise Http404()
-
-    posts = Post.objects.filter(Q(Q(title__icontains=searchTerm) | Q(description__icontains=searchTerm)), published=True)
-    posts = posts.order_by('-id')
-    page, paginationInfo = makePagination(request, posts, QTY_PER_PAGE)
-
-    return render(request, 'locator/pages/home.html', context={
-        'searchTerm': searchTerm,
-        'page': page,
-        'tinyRange': paginationInfo.get('tinyRange'),
-        'paginationInfo': paginationInfo,
-        'additionalParam': f"&q={searchTerm}"
-    })
-
-
-def post(request, id):
+def detailPost(request, id):
     post = get_object_or_404(Post, pk=id, published=True)
     return render(request, 'locator/pages/post.html', context={'post': post})
 
@@ -49,10 +27,13 @@ def createPost(request):
         post.published = False
         post.slug = slugify(post.title)
         post.save()
+
+        resizeImage(post.image1)
+        resizeImage(post.image2)
+        resizeImage(post.image3)
+
         messages.success(request, 'Seu post foi salvo com sucesso')
         return redirect('dashboard')
-        # rezise image here
-
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'create', 'id': 0})
 
 
@@ -65,9 +46,13 @@ def updatePost(request, id):
         post.author = request.user
         post.published = False
         post.save()
+
+        resizeImage(post.image1)
+        resizeImage(post.image2)
+        resizeImage(post.image3)
+
         messages.success(request, 'Seu post foi salvo com sucesso')
         return redirect('dashboard')
-        # rezise image here
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'update', 'id': id})
 
 
@@ -84,7 +69,5 @@ def foundPost(request, id):
 def deletePost(request, id):
     post = Post.objects.get(pk=id, published=False, author=request.user)
     post.delete()
-
-    # delete images here
     messages.success(request, "Post deletado com sucesso!")
     return redirect('dashboard')
