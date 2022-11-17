@@ -1,16 +1,12 @@
 {% extends 'locator/pages/base.html' %}
 
-{% block title %}
-<title>Localizador Pet</title>
-{% endblock title %}
-
 {% block content %}
 
 <div class="cards my-2 mx-4">
     {% for post in page %}
         {% include 'locator/components/preview.html' %}
     {% empty %}
-        <h1 class="text-center">Nenhum post encontrado</h1>
+        <h1 class="text-center">{% translate "No posts found" %}</h1>
     {% endfor %}
 </div>
 

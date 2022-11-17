@@ -1,8 +1,6 @@
 {% extends 'locator/pages/base.html' %}
 
-{% block title %}
-<title>Post | Localizador Pet</title>
-{% endblock title %}
+{% block title %} Post | {% endblock title %}
 
 {% block content %}
 <div class="w-100 d-flex flex-column align-items-center mt-3">
@@ -10,7 +8,7 @@
 
     {% if form.errors %}
         <div class="alert alert-danger mt-3" role="alert">
-            Foram encontrados erros no formulário, confira os dados inseridos
+            {% translate "The form contains errors, please check the information" %}
         </div>
     {% endif %}
 
@@ -41,7 +39,7 @@
         </div>
 
         <div class="d-grid gap-2 text-center mt-3 mb-3">
-            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+            <button type="submit" class="btn btn-primary btn-block">{% translate "Save" %}</button>
         </div>
     </form>
 </div>

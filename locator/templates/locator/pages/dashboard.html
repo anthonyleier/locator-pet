@@ -1,8 +1,6 @@
 {% extends 'locator/pages/base.html' %}
 
-{% block title %}
-<title>Login | Localizador Pet</title>
-{% endblock title %}
+{% block title %} Dashboard | {% endblock title %}
 
 {% block content %}
 <div class="w-100 d-flex flex-column align-items-center mt-3">
@@ -14,8 +12,8 @@
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{request.user.username}}</button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'createPost' %}">Criar novo post</a></li>
-                <li><button type="submit" class="not-a-button dropdown-item">Sair</button></li>
+                <li><a class="dropdown-item" href="{% url 'createPost' %}">{% translate "Create new post" %}</a></li>
+                <li><button type="submit" class="not-a-button dropdown-item">{% translate "Logout" %}</button></li>
             </ul>
         </div>
     </form>
@@ -23,14 +21,14 @@
     <table class="table table-striped w-75 mt-5">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Título</th>
-                <th scope="col">Publicado</th>
-                <th scope="col">Encontrado</th>
-                <th scope="col">Usuário</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Excluir</th>
-                <th scope="col">Encontrou?</th>
+                <th scope="col">ID</th>
+                <th scope="col">{% translate "Title" %}</th>
+                <th scope="col">{% translate "Published" %}</th>
+                <th scope="col">{% translate "Found" %}</th>
+                <th scope="col">{% translate "User" %}</th>
+                <th scope="col">{% translate "Edit" %}</th>
+                <th scope="col">{% translate "Delete" %}</th>
+                <th scope="col">{% translate "Found" %}?</th>
             </tr>
         </thead>
         <tbody>
@@ -43,11 +41,11 @@
                     <td>{{post.user}}</td>
                     <td><a href="{% url 'updatePost' post.id %}">📝</a></td>
                     <td><form action="{% url 'deletePost' post.id %}" method="POST" id="formDeletePost">{% csrf_token %}<button type="submit" class="not-a-button">❌</button></form></td>
-                    <td><form action="{% url 'foundPost' post.id %}" method='POST' id='formFoundPost'>{% csrf_token %}<button type="submit" class="btn btn-primary btn-sm">Encontrei</button></form></td>
+                    <td><form action="{% url 'foundPost' post.id %}" method='POST' id='formFoundPost'>{% csrf_token %}<button type="submit" class="btn btn-primary btn-sm">{% translate "Found" %}</button></form></td>
                 </tr>
 
             {% empty %}
-                <tr><td colspan="8">Você não tem posts</td></tr>
+                <tr><td colspan="8">{% translate "You have no posts" %}</td></tr>
 
             {% endfor %}
         </tbody>

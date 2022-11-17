@@ -1,8 +1,6 @@
 {% extends 'locator/pages/base.html' %}
 
-{% block title %}
-<title>{{ post.title }} | Localizador Pet</title>
-{% endblock title %}
+{% block title %} {{ post.title }} | {% endblock title %}
 
 {% block content %}
 <div class="container text-center">
@@ -15,21 +13,21 @@
             <h1>{{ post.title }}</h1>
 
             {% if post.found %}
-                <span class="btn btn-success btn-sm mb-3">Encontrado</span>
+                <span class="btn btn-success btn-sm mb-3">{% translate "Found" %}</span>
             {% else %}
-                <span class="btn btn-warning btn-sm mb-3">Desaparecido</span>
+                <span class="btn btn-warning btn-sm mb-3">{% translate "Missing" %}</span>
             {% endif %}
 
             <p>{{ post.neighborhood }} - {{ post.city }}</p>
             <p>{{ post.description }}</p>
 
             <div class="user-info border shadow mt-5 mb-2 py-4">
-                <a href="https://wa.me/+5549998048595">
-                    <i class="bi bi-person-fill"></i> {{ post.user.get_full_name }} - <i class="bi bi-telephone-fill"></i> (49) 998048595
+                <a href="https://wa.me/+55{{post.user.phone}}">
+                    <i class="bi bi-person-fill"></i> {{ post.user.get_full_name }} - <i class="bi bi-telephone-fill"></i> {{post.user.phone}}
                 </a>
             </div>
 
-            <p>Última atualização: {{ post.updated_at | date:'d/m/Y' }} às {{ post.updated_at | date:'H:i' }}</p>
+            <p>{% translate "Last update" %}: {{ post.updated_at | date:'d/m/Y' }} {% translate "at" %} {{ post.updated_at | date:'H:i' }}</p>
         </div>
     </div>
 </div>

@@ -13,8 +13,8 @@
 
         {% else %}
             <div class="w-25 d-flex flex-row justify-content-between">
-                <a href="{% url 'registerForm' %}"><b>Sign Up</b></a>
-                <a href="{% url 'loginForm' %}"><b>Log In</b></a>
+                <a href="{% url 'registerForm' %}"><b>{% translate "Sign Up" %}</b></a>
+                <a href="{% url 'loginForm' %}"><b>{% translate "Log In" %}</b></a>
             </div>
 
         {% endif %}
