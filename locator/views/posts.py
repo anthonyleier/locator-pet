@@ -12,9 +12,9 @@ from utils.functions import resizeImage, makeSlug
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
 
 
-def detailPost(request, id):
+def detailPost(request, slug):
     user = request.user if not request.user.is_anonymous else None
-    post = get_object_or_404(Post.objects.filter(Q(published=True) | Q(user=user)), Q(id=id))
+    post = get_object_or_404(Post.objects.filter(Q(published=True) | Q(user=user)), Q(slug=slug))
     return render(request, 'locator/pages/post.html', context={'post': post})
 
 
