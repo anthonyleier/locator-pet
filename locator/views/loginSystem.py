@@ -12,7 +12,8 @@ from locator.forms.register import RegisterForm
 def registerForm(request):
     form_data = request.session.get('form_data')
     form = RegisterForm(form_data)
-    return render(request, 'locator/pages/register.html', context={'form': form})
+    context = {'form': form, 'type': 'Register', 'route': 'registerAction'}
+    return render(request, 'locator/pages/auth.html', context=context)
 
 
 def registerAction(request):
@@ -40,7 +41,8 @@ def loginForm(request):
         return redirect('dashboard')
 
     form = LoginForm()
-    return render(request, 'locator/pages/login.html', context={'form': form})
+    context = {'form': form, 'type': 'Login', 'route': 'loginAction'}
+    return render(request, 'locator/pages/auth.html', context=context)
 
 
 def loginAction(request):

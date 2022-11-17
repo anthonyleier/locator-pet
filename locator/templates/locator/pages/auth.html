@@ -1,12 +1,12 @@
 {% extends 'locator/pages/base.html' %}
 
 {% block title %}
-<title>Registar | Localizador Pet</title>
+<title>{{type}} | Localizador Pet</title>
 {% endblock title %}
 
 {% block content %}
 <div class="w-100 d-flex flex-column align-items-center mt-3">
-    <h1>Registrar</h1>
+    <h1>{{type}}</h1>
 
     {% if form.errors %}
         <div class="alert alert-danger mt-3" role="alert">
@@ -14,7 +14,7 @@
         </div>
     {% endif %}
 
-    <form action="{% url 'registerAction' %}" method="POST">
+    <form action="{% url route %}" method="POST" class="w-50">
         {% csrf_token %}
 
         <div class="d-flex flex-column mt-3">
@@ -31,9 +31,8 @@
         </div>
 
         <div class="d-grid gap-2 text-center mt-3 mb-3">
-            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-block">{{type}}</button>
         </div>
     </form>
-
 </div>
 {% endblock content %}
