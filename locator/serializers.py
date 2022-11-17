@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['id', 'title', 'description', 'slug', 'status', 'published', 'created_at', 'updated_at', 'image1', 'image2', 'image3', 'user']
+        fields = ['id', 'title', 'description', 'slug', 'found', 'published', 'created_at', 'updated_at', 'image1', 'image2', 'image3', 'user']
 
     user = serializers.StringRelatedField()
     published = serializers.BooleanField(read_only=True)
@@ -22,7 +22,7 @@ class PostSerializer(serializers.ModelSerializer):
     def validated_title(self, value):
         title = value
         if len(title) < 5:
-            raise serializers.ValidationError('Mais do que cinco')
+            raise serializers.ValidationError('Título deve possuir mais de 5 caracteres')
 
         return title
 
@@ -34,8 +34,8 @@ class PostSerializer(serializers.ModelSerializer):
         description = attrs.get('description')
 
         if title == description:
-            errors['title'].append('Nao pode ser igual')
-            errors['description'].append('Nao pode ser igual')
+            errors['title'].append('Título não pode ser igual à descrição')
+            errors['description'].append('Descrição não pode ser igual ao título')
 
         if errors:
             raise serializers.ValidationError(errors)
