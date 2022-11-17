@@ -16,7 +16,7 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user', 'phone', 'address']
-    search_fields = ['id', 'user', 'phone', 'address']
+    list_display = ['id', 'user', 'phone']
+    search_fields = ['id', 'user', 'phone']
     list_per_page = 20
     ordering = ['-id']

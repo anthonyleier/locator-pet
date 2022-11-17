@@ -61,6 +61,14 @@ class RegisterForm(forms.ModelForm):
         label='Confirmação de senha'
     )
 
+    phone = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: (49) 9 99876543'}),
+        error_messages={'required': 'Telefone não pode ser vazio.'},
+        help_text=('Será utilizado para os outros usuários entrarem em contato.'),
+        label='Telefone'
+    )
+
     def clean(self):
         cleaned_data = super().clean()
 
