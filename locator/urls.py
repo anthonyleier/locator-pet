@@ -10,11 +10,11 @@ urlpatterns = [
     path('dashboard/', main.dashboard, name="dashboard"),
     path('posts/search/', main.search, name='search'),
 
-    path('posts/<slug:slug>/', posts.detailPost, name='detailPost'),
     path('posts/new/', posts.createPost, name="createPost"),
     path('posts/edit/<int:id>/', posts.updatePost, name="updatePost"),
     path('posts/delete/<int:id>/', posts.deletePost, name="deletePost"),
     path('posts/found/<int:id>/', posts.foundPost, name="foundPost"),
+    path('posts/<slug:slug>/', posts.detailPost, name='detailPost'),
 
     path('register/', auth.registerForm, name="registerForm"),
     path('register/action/', auth.registerAction, name="registerAction"),

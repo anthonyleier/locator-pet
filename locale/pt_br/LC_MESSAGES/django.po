@@ -133,7 +133,7 @@ msgstr "Confirmação de Senha"
 
 #: .\locator\forms\register.py:69
 msgid "Phone must not be empty."
-msgstr "Telefone não pode ser vazio"
+msgstr "Telefone não pode ser vazio."
 
 #: .\locator\forms\register.py:70
 msgid "Phone will be used for other users to contact you."
@@ -225,7 +225,7 @@ msgstr "Desaparecido"
 
 #: .\locator\templates\locator\pages\post.html:31
 msgid "Last update"
-msgstr "última atualização"
+msgstr "Última atualização"
 
 #: .\locator\templates\locator\pages\post.html:31
 msgid "at"
