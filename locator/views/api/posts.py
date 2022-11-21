@@ -8,6 +8,8 @@ from django.shortcuts import get_object_or_404
 from locator.models import Post
 from locator.serializers import PostSerializer
 
+from utils.functions import makeSlug
+
 
 class PostList(APIView):
     permission_classes = [IsAuthenticated]
@@ -18,9 +20,12 @@ class PostList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
+        request.data['user'] = request.user.id
+        request.data['slug'] = makeSlug(request.data['title'])
         serializer = PostSerializer(data=request.data, many=False)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        serializer.validated_data['user'] = request.user.username
         return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
 
@@ -33,18 +38,18 @@ class PostDetail(APIView):
         return post
 
     def get(self, request, id):
-        post = self.getPost(request.user, id)
+        post = self.getPost(id)
         serializer = PostSerializer(instance=post)
         return Response(serializer.data)
 
     def patch(self, request, id):
-        post = self.getPost(request.user, id)
+        post = self.getPost(id)
         serializer = PostSerializer(instance=post, data=request.data, many=False, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
     def delete(self, request, id):
-        post = self.getPost(request.user, id)
+        post = self.getPost(id)
         post.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
