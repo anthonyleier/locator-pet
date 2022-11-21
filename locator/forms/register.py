@@ -1,6 +1,8 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+
 from utils.functions import verifyExistingEmail, verifyStrongPassword
 
 
@@ -11,62 +13,62 @@ class RegisterForm(forms.ModelForm):
 
     first_name = forms.CharField(
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: João'}),
-        error_messages={'required': 'Primeiro nome não pode ser vazio.'},
-        label='Primeiro nome'
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Ex.: John')}),
+        error_messages={'required': _('First name must not be empty.')},
+        label=_('First Name')
     )
 
     last_name = forms.CharField(
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Silva'}),
-        error_messages={'required': 'Último nome não pode ser vazio.'},
-        label='Último nome'
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Ex.: Smith')}),
+        error_messages={'required': _('Last name must not be empty.')},
+        label=_('Last Name')
     )
 
     username = forms.CharField(
         required=True,
         min_length=4,
         max_length=150,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: joao.silva'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Ex.: john.smith')}),
         error_messages={
-            'required': 'Usuário não pode ser vazio.',
-            'min_length': 'Usuário deve ter no mínimo 4 caracteres',
-            'max_length': 'Usuário deve ter no máximo 150 caracteres'
+            'required': _('Username must not be empty.'),
+            'min_length': _('Username must be at least 4 characters long.'),
+            'max_length': _('Username must be a maximum of 150 characters.'),
         },
-        help_text=('Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.'),
-        label='Usuário'
+        help_text=('Obligatoriness. 150 characters or less. Only letters, numbers and @/./+/-/_.'),
+        label=_('Username')
     )
 
     email = forms.CharField(
         required=True,
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: joao.silva@gmail.com'}),
-        error_messages={'required': 'Email não pode ser vazio.'},
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Ex.: john.smith@gmail.com')}),
+        error_messages={'required': _('Email must not be empty.')},
         validators=[verifyExistingEmail],
-        label='Email'
+        label=_('Email')
     )
 
     password = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Sua senha'}),
-        error_messages={'required': 'Senha não pode ser vazia.'},
-        help_text=('Necessário conter uma letra minúscula, uma letra maiúscula e um número. Tamanho mínimo de 8 caracteres.'),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Your password')}),
+        error_messages={'required': _('Password must not be empty.')},
+        help_text=(_('The password must have at least one uppercase letter, one lowercase letter and one number. Minimum length of 8 characters.')),
         validators=[verifyStrongPassword],
-        label='Senha'
+        label=_('Password')
     )
 
     password_confirm = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Sua senha novamente'}),
-        error_messages={'required': 'Confirmação de senha não pode ser vazia.'},
-        label='Confirmação de senha'
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Your password again')}),
+        error_messages={'required': _('Password confirm must not be empty.')},
+        label=_('Password confirm')
     )
 
     phone = forms.CharField(
         required=True,
         widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: 49999876543'}),
-        error_messages={'required': 'Telefone não pode ser vazio.'},
-        help_text=('Será utilizado para os outros usuários entrarem em contato.'),
-        label='Telefone'
+        error_messages={'required': _('Phone must not be empty.')},
+        help_text=(_('Phone will be used for other users to contact you.')),
+        label=_('Phone')
     )
 
     def clean(self):
@@ -76,5 +78,5 @@ class RegisterForm(forms.ModelForm):
         password_confirm = cleaned_data.get('password_confirm')
 
         if password != password_confirm:
-            error = ValidationError('As senhas devem ser iguais.', code='invalid')
+            error = ValidationError(_('Passwords must be the same.'), code='invalid')
             raise ValidationError({'password': error, 'password_confirm': error})

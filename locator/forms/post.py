@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from locator.models import Post
 
 
@@ -9,29 +10,29 @@ class PostForm(forms.ModelForm):
 
     title = forms.CharField(
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Labrador Desaparecido'}),
-        error_messages={'required': 'Título não pode ser vazio.'},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Missing dog')}),
+        error_messages={'required': _('Title must not be empty.')},
         label='Título'
     )
 
     description = forms.CharField(
         required=True,
-        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descrição dos fatos e informações relevantes'}),
-        error_messages={'required': 'Descrição não pode ser vazia.'},
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': _('Description and facts')}),
+        error_messages={'required': _('Description must not be empty.')},
         label='Descrição'
     )
 
     neighborhood = forms.CharField(
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Centro'}),
-        error_messages={'required': 'Bairro não pode ser vazio'},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Ex.: Center')}),
+        error_messages={'required': _('Neighborhood must not be empty.')},
         label='Bairro'
     )
 
     city = forms.CharField(
         required=True,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Caçador-SC'}),
-        error_messages={'required': 'Cidade não pode ser vazio.'},
+        error_messages={'required': _('City must not be empty.')},
         label='Cidade'
     )
 

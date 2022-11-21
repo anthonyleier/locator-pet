@@ -3,6 +3,7 @@ import os
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from django.db.models import Q
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.decorators import login_required
 
 from locator.models import Post
@@ -33,7 +34,7 @@ def createPost(request):
         resizeImage(post.image2)
         resizeImage(post.image3)
 
-        messages.success(request, 'Seu post foi salvo com sucesso')
+        messages.success(request, _('Your post has been saved'))
         return redirect('dashboard')
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'create', 'id': 0})
 
@@ -52,7 +53,7 @@ def updatePost(request, id):
         resizeImage(post.image2)
         resizeImage(post.image3)
 
-        messages.success(request, 'Seu post foi salvo com sucesso')
+        messages.success(request, _('Your post has been saved'))
         return redirect('dashboard')
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'update', 'id': id})
 
@@ -62,7 +63,7 @@ def foundPost(request, id):
     post = Post.objects.get(pk=id, user=request.user)
     post.found = True
     post.save()
-    messages.success(request, 'Que notícia maravilhosa!')
+    messages.success(request, _('Wonderful news!'))
     return redirect('dashboard')
 
 
@@ -70,5 +71,5 @@ def foundPost(request, id):
 def deletePost(request, id):
     post = Post.objects.get(pk=id, published=False, user=request.user)
     post.delete()
-    messages.success(request, "Post deletado com sucesso!")
+    messages.success(request, _('Your post has been deleted'))
     return redirect('dashboard')

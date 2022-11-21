@@ -34,7 +34,7 @@ def registerAction(request):
         profile.user.phone = request.POST['phone']
         profile.save()
 
-        messages.success(request, _('Seu usuário foi criado com sucesso, faça o login'))
+        messages.success(request, _('Your user has been successfully created'))
         del (request.session['form_data'])
         return redirect('loginForm')
 
@@ -63,10 +63,10 @@ def loginAction(request):
 
         if authenticatedUser:
             login(request, authenticatedUser)
-            messages.success(request, 'Usuário logado com sucesso')
+            messages.success(request, _('Your user has been successfully logged in'))
             return redirect('dashboard')
 
-    messages.error(request, 'Usuário inválido')
+    messages.error(request, _('Invalid User'))
     return redirect('loginForm')
 
 
