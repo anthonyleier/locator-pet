@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 09:49-0300\n"
+"POT-Creation-Date: 2022-11-21 11:48-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,240 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\locator\forms\login.py:9 .\locator\forms\register.py:34
+msgid "Username must not be empty."
+msgstr "Usuário não pode ser vazio."
 
-#: .\locator\templates\locator\components\preview.html:17
-msgid "Created at:"
-msgstr "Criado em:"
+#: .\locator\forms\login.py:15 .\locator\forms\register.py:52
+msgid "Your password"
+msgstr "Sua senha"
 
-#: .\locator\templates\locator\components\preview.html:17
-#: .\locator\templates\locator\components\preview.html:18
+#: .\locator\forms\login.py:16 .\locator\forms\register.py:53
+msgid "Password must not be empty."
+msgstr "Senha não pode ser vazia."
+
+#: .\locator\forms\post.py:13
+msgid "Missing dog"
+msgstr "Cachorro desaparecido"
+
+#: .\locator\forms\post.py:14
+msgid "Title must not be empty."
+msgstr "Título não pode ser vazio."
+
+#: .\locator\forms\post.py:20
+msgid "Description and facts"
+msgstr "Descrição e fatos relevantes"
+
+#: .\locator\forms\post.py:21
+msgid "Description must not be empty."
+msgstr "Descrição não pode ser vazia."
+
+#: .\locator\forms\post.py:27
+msgid "Ex.: Center"
+msgstr "Ex.: Centro"
+
+#: .\locator\forms\post.py:28
+msgid "Neighborhood must not be empty."
+msgstr "Bairro não pode ser vazio."
+
+#: .\locator\forms\post.py:35
+msgid "City must not be empty."
+msgstr "Cidade não pode ser vazia."
+
+#: .\locator\forms\register.py:16
+msgid "Ex.: John"
+msgstr "Ex.: João"
+
+#: .\locator\forms\register.py:17
+msgid "First name must not be empty."
+msgstr "Primeiro nome não pode ser vazio."
+
+#: .\locator\forms\register.py:18
+msgid "First Name"
+msgstr "Primeiro nome"
+
+#: .\locator\forms\register.py:23
+msgid "Ex.: Smith"
+msgstr "Ex.: Silva"
+
+#: .\locator\forms\register.py:24
+msgid "Last name must not be empty."
+msgstr "Último nome não pode ser vazio."
+
+#: .\locator\forms\register.py:25
+msgid "Last Name"
+msgstr "Último nome"
+
+#: .\locator\forms\register.py:32
+msgid "Ex.: john.smith"
+msgstr "Ex.: joao.silva"
+
+#: .\locator\forms\register.py:35
+msgid "Username must be at least 4 characters long."
+msgstr "Usuário deve ter no mínimo 4 caracteres."
+
+#: .\locator\forms\register.py:36
+msgid "Username must be a maximum of 150 characters."
+msgstr "Usuário deve ter no máximo 150 caracteres."
+
+#: .\locator\forms\register.py:39
+msgid "Username"
+msgstr "Usuário"
+
+#: .\locator\forms\register.py:44
+msgid "Ex.: john.smith@gmail.com"
+msgstr "Ex.: joao.silva@gmail.com"
+
+#: .\locator\forms\register.py:45
+msgid "Email must not be empty."
+msgstr "Email não pode ser vazio."
+
+#: .\locator\forms\register.py:47
+msgid "Email"
+msgstr "Email"
+
+#: .\locator\forms\register.py:54
+msgid ""
+"The password must have at least one uppercase letter, one lowercase letter "
+"and one number. Minimum length of 8 characters."
+msgstr "A senha deve conter no mínimo uma letra maiúscula, uma letra minúscula e um número. Com tamanho máximo de 8 caracteres."
+
+#: .\locator\forms\register.py:56
+msgid "Password"
+msgstr "Senha"
+
+#: .\locator\forms\register.py:61
+msgid "Your password again"
+msgstr "Sua senha novamente"
+
+#: .\locator\forms\register.py:62
+msgid "Password confirm must not be empty."
+msgstr "Confirmação de Senha não pode ser vazia."
+
+#: .\locator\forms\register.py:63
+msgid "Password confirm"
+msgstr "Confirmação de Senha"
+
+#: .\locator\forms\register.py:69
+msgid "Phone must not be empty."
+msgstr "Telefone não pode ser vazio"
+
+#: .\locator\forms\register.py:70
+msgid "Phone will be used for other users to contact you."
+msgstr "Telefone será usado por outros usuários para entrar em contato com você."
+
+#: .\locator\forms\register.py:71
+msgid "Phone"
+msgstr "Telefone"
+
+#: .\locator\forms\register.py:81
+msgid "Passwords must be the same."
+msgstr "As senhas precisam ser iguais."
+
+#: .\locator\templates\locator\components\carousel.html:26
+msgid "Previous"
+msgstr "Anterior"
+
+#: .\locator\templates\locator\components\carousel.html:31
+msgid "Next"
+msgstr "Próximo"
+
+#: .\locator\templates\locator\components\navbar.html:18
+msgid "Sign Up"
+msgstr "Registrar"
+
+#: .\locator\templates\locator\components\navbar.html:19
+msgid "Log In"
+msgstr "Login"
+
+#: .\locator\templates\locator\pages\auth.html:12
+#: .\locator\templates\locator\pages\edit.html:12
+msgid "The form contains errors, please check the information"
+msgstr "O formulário contém erros, por favor confira as informações"
+
+#: .\locator\templates\locator\pages\base.html:24
+msgid "Pet Locator"
+msgstr "Localizador Pet"
+
+#: .\locator\templates\locator\pages\dashboard.html:16
+msgid "Create new post"
+msgstr "Criar novo post"
+
+#: .\locator\templates\locator\pages\dashboard.html:17
+msgid "Logout"
+msgstr "Logout"
+
+#: .\locator\templates\locator\pages\dashboard.html:26
+msgid "Title"
+msgstr "Título"
+
+#: .\locator\templates\locator\pages\dashboard.html:27
+msgid "Published"
+msgstr "Publicado"
+
+#: .\locator\templates\locator\pages\dashboard.html:28
+#: .\locator\templates\locator\pages\dashboard.html:32
+#: .\locator\templates\locator\pages\dashboard.html:45
+#: .\locator\templates\locator\pages\post.html:17
+msgid "Found"
+msgstr "Encontrado"
+
+#: .\locator\templates\locator\pages\dashboard.html:29
+msgid "User"
+msgstr "Usuário"
+
+#: .\locator\templates\locator\pages\dashboard.html:30
+msgid "Edit"
+msgstr "Editar"
+
+#: .\locator\templates\locator\pages\dashboard.html:31
+msgid "Delete"
+msgstr "Deletar"
+
+#: .\locator\templates\locator\pages\dashboard.html:49
+msgid "You have no posts"
+msgstr "Você não tem posts"
+
+#: .\locator\templates\locator\pages\edit.html:43
+msgid "Save"
+msgstr "Salvar"
+
+#: .\locator\templates\locator\pages\home.html:10
+msgid "No posts found"
+msgstr "Nenhum post encontrado"
+
+#: .\locator\templates\locator\pages\post.html:19
+msgid "Missing"
+msgstr "Desaparecido"
+
+#: .\locator\templates\locator\pages\post.html:31
+msgid "Last update"
+msgstr "última atualização"
+
+#: .\locator\templates\locator\pages\post.html:31
 msgid "at"
 msgstr "às"
 
-#: .\locator\templates\locator\components\preview.html:18
-msgid "Updated at:"
-msgstr "Atualizado em:"
+#: .\locator\views\auth.py:37
+msgid "Your user has been successfully created"
+msgstr "Seu usuário foi criado com sucesso"
 
-#: .\locator\views\loginSystem.py:30
-msgid "Seu usuário foi criado com sucesso, faça o login"
-msgstr ""
+#: .\locator\views\auth.py:66
+msgid "Your user has been successfully logged in"
+msgstr "Seu usuário foi logado com sucesso"
+
+#: .\locator\views\auth.py:69
+msgid "Invalid User"
+msgstr "Usuário inválido"
+
+#: .\locator\views\posts.py:37 .\locator\views\posts.py:56
+msgid "Your post has been saved"
+msgstr "Seu post foi salvo"
+
+#: .\locator\views\posts.py:66
+msgid "Wonderful news!"
+msgstr "Que notícia maravilhosa!"
+
+#: .\locator\views\posts.py:74
+msgid "Your post has been deleted"
+msgstr "Seu post foi deletado"
