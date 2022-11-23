@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-21 11:48-0300\n"
+"POT-Creation-Date: 2022-11-23 10:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: .\locator\forms\login.py:9 .\locator\forms\register.py:34
 msgid "Username must not be empty."
 msgstr "Usuário não pode ser vazio."
@@ -113,7 +114,9 @@ msgstr "Email"
 msgid ""
 "The password must have at least one uppercase letter, one lowercase letter "
 "and one number. Minimum length of 8 characters."
-msgstr "A senha deve conter no mínimo uma letra maiúscula, uma letra minúscula e um número. Com tamanho máximo de 8 caracteres."
+msgstr ""
+"A senha deve conter no mínimo uma letra maiúscula, uma letra minúscula e um "
+"número. Com tamanho máximo de 8 caracteres."
 
 #: .\locator\forms\register.py:56
 msgid "Password"
@@ -137,7 +140,8 @@ msgstr "Telefone não pode ser vazio."
 
 #: .\locator\forms\register.py:70
 msgid "Phone will be used for other users to contact you."
-msgstr "Telefone será usado por outros usuários para entrar em contato com você."
+msgstr ""
+"Telefone será usado por outros usuários para entrar em contato com você."
 
 #: .\locator\forms\register.py:71
 msgid "Phone"
@@ -167,10 +171,6 @@ msgstr "Login"
 #: .\locator\templates\locator\pages\edit.html:12
 msgid "The form contains errors, please check the information"
 msgstr "O formulário contém erros, por favor confira as informações"
-
-#: .\locator\templates\locator\pages\base.html:24
-msgid "Pet Locator"
-msgstr "Localizador Pet"
 
 #: .\locator\templates\locator\pages\dashboard.html:16
 msgid "Create new post"
@@ -254,3 +254,6 @@ msgstr "Que notícia maravilhosa!"
 #: .\locator\views\posts.py:74
 msgid "Your post has been deleted"
 msgstr "Seu post foi deletado"
+
+#~ msgid "Pet Locator"
+#~ msgstr "Localizador Pet"
