@@ -58,4 +58,5 @@ body {
 
 .not-a-button {
     border: 0;
+    background-color: transparent;
 }
