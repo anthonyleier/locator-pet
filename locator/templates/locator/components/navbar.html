@@ -1,16 +1,17 @@
 {% load i18n %}
+{% load static %}
 
 <div class="w-100 d-flex flex-row justify-content-center mt-5 mb-5">
-    <div class="w-75 d-flex flex-row justify-content-center">
+    <div class="w-75 d-flex flex-row justify-content-center align-items-center">
         <div class="w-75 d-flex flex-row justify-content-start">
             <a href="{% url 'home' %}">
-                <img src="https://www.petfinder.com/themes/custom/consumer_react/logo.svg" />
+                <img src="{% static 'locator/img/logo.svg' %}" class="logo" />
             </a>
         </div>
 
         {% if request.user.is_authenticated %}
             <div class="w-25 d-flex flex-row justify-content-end">
-                <a href="{% url 'dashboard' %}"><b>{{request.user.get_full_name}}</b></a>
+                <a href="{% url 'dashboard' %}"><b class="username"><i class="bi bi-person-fill"></i> {{request.user.get_full_name}}</b></a>
             </div>
 
         {% else %}
