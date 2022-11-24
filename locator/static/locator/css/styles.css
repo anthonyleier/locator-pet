@@ -47,11 +47,6 @@ body {
     grid-gap: 30px;
 }
 
-.errorlist {
-    color: var(--danger);
-    font-size: 0.8rem;
-}
-
 .user-info {
     font-weight: bold;
 }
@@ -59,12 +54,4 @@ body {
 .not-a-button {
     border: 0;
     background-color: transparent;
-}
-
-.logo {
-    width: 75%;
-}
-
-.username {
-    font-size: 125%;
 }
