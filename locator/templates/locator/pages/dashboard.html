@@ -4,7 +4,7 @@
 {% block title %} Dashboard | {% endblock title %}
 
 {% block content %}
-<div class="w-100 d-flex flex-column align-items-center mt-3">
+<section class="w-100 d-flex flex-column align-items-center mt-3">
     <h1>Dashboard</h1>
 
     <form action="{% url 'logoutAction' %}" method="POST">
@@ -51,5 +51,5 @@
             {% endfor %}
         </tbody>
     </table>
-</div>
+</section>
 {% endblock content %}

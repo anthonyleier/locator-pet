@@ -1,5 +1,5 @@
 {% if page.has_other_pages %}
-<div class="paginator">
+<footer class="paginator">
 
     {% if paginationInfo.isFirstPageNotInRange %}
         <a href="?page=1{{ additionalParam }}" class="bi bi-arrow-left page"></a>
@@ -17,5 +17,5 @@
         <a href="?page={{ paginationInfo.totalSize }}{{ additionalParam }}" class="bi bi-arrow-right page"></a>
     {% endif %}
 
-</div>
+</footer>
 {% endif %}

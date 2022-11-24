@@ -4,21 +4,21 @@
     <div class="carousel-inner">
 
         {% if post.image1 %}
-            <div class="carousel-item active">
+            <figure class="carousel-item active">
                 <img src="{{ post.image1.url }}" class="d-block w-100">
-            </div>
+            </figure>
         {% endif %}
 
         {% if post.image2 %}
-            <div class="carousel-item">
+            <figure class="carousel-item">
                 <img src="{{ post.image2.url }}" class="d-block w-100">
-            </div>
+            </figure>
         {% endif %}
 
         {% if post.image3 %}
-            <div class="carousel-item">
+            <figure class="carousel-item">
                 <img src="{{ post.image3.url }}" class="d-block w-100">
-            </div>
+            </figure>
         {% endif %}
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
