@@ -41,7 +41,12 @@ def createPost(request):
 
 @login_required(login_url='loginForm')
 def updatePost(request, id):
-    post = Post.objects.get(pk=id, published=False, user=request.user)
+    post = Post.objects.get(pk=id, user=request.user)
+
+    if post.published:
+        messages.error(request, _('Your post cannot be changed'))
+        return redirect('dashboard')
+
     form = PostForm(request.POST or None, instance=post, files=request.FILES or None)
     if form.is_valid():
         post = form.save(commit=False)
@@ -55,6 +60,7 @@ def updatePost(request, id):
 
         messages.success(request, _('Your post has been saved'))
         return redirect('dashboard')
+
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'update', 'id': id})
 
 

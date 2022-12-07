@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-23 10:47-0300\n"
+"POT-Creation-Date: 2022-12-07 16:23-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,11 +159,11 @@ msgstr "Anterior"
 msgid "Next"
 msgstr "Próximo"
 
-#: .\locator\templates\locator\components\navbar.html:18
+#: .\locator\templates\locator\components\navbar.html:19
 msgid "Sign Up"
 msgstr "Registrar"
 
-#: .\locator\templates\locator\components\navbar.html:19
+#: .\locator\templates\locator\components\navbar.html:20
 msgid "Log In"
 msgstr "Login"
 
@@ -180,34 +180,34 @@ msgstr "Criar novo post"
 msgid "Logout"
 msgstr "Logout"
 
-#: .\locator\templates\locator\pages\dashboard.html:26
+#: .\locator\templates\locator\pages\dashboard.html:27
 msgid "Title"
 msgstr "Título"
 
-#: .\locator\templates\locator\pages\dashboard.html:27
+#: .\locator\templates\locator\pages\dashboard.html:28
 msgid "Published"
 msgstr "Publicado"
 
-#: .\locator\templates\locator\pages\dashboard.html:28
-#: .\locator\templates\locator\pages\dashboard.html:32
-#: .\locator\templates\locator\pages\dashboard.html:45
+#: .\locator\templates\locator\pages\dashboard.html:29
+#: .\locator\templates\locator\pages\dashboard.html:33
+#: .\locator\templates\locator\pages\dashboard.html:46
 #: .\locator\templates\locator\pages\post.html:17
 msgid "Found"
 msgstr "Encontrado"
 
-#: .\locator\templates\locator\pages\dashboard.html:29
+#: .\locator\templates\locator\pages\dashboard.html:30
 msgid "User"
 msgstr "Usuário"
 
-#: .\locator\templates\locator\pages\dashboard.html:30
+#: .\locator\templates\locator\pages\dashboard.html:31
 msgid "Edit"
 msgstr "Editar"
 
-#: .\locator\templates\locator\pages\dashboard.html:31
+#: .\locator\templates\locator\pages\dashboard.html:32
 msgid "Delete"
 msgstr "Deletar"
 
-#: .\locator\templates\locator\pages\dashboard.html:49
+#: .\locator\templates\locator\pages\dashboard.html:50
 msgid "You have no posts"
 msgstr "Você não tem posts"
 
@@ -243,17 +243,18 @@ msgstr "Seu usuário foi logado com sucesso"
 msgid "Invalid User"
 msgstr "Usuário inválido"
 
-#: .\locator\views\posts.py:37 .\locator\views\posts.py:56
+#: .\locator\views\posts.py:37 .\locator\views\posts.py:61
 msgid "Your post has been saved"
 msgstr "Seu post foi salvo"
 
-#: .\locator\views\posts.py:66
+#: .\locator\views\posts.py:47
+msgid "Your post cannot be changed"
+msgstr "Seu post não pode ser alterado"
+
+#: .\locator\views\posts.py:72
 msgid "Wonderful news!"
 msgstr "Que notícia maravilhosa!"
 
-#: .\locator\views\posts.py:74
+#: .\locator\views\posts.py:80
 msgid "Your post has been deleted"
 msgstr "Seu post foi deletado"
-
-#~ msgid "Pet Locator"
-#~ msgstr "Localizador Pet"
