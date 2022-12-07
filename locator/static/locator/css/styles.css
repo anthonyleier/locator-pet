@@ -55,3 +55,14 @@ body {
     border: 0;
     background-color: transparent;
 }
+
+.table-holder {
+    width: 75%;
+    margin-top: 2%;
+}
+
+@media (max-width: 600px) {
+    .table-holder {
+        overflow-x: scroll;
+    }
+}
