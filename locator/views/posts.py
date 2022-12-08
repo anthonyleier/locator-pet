@@ -34,7 +34,7 @@ def createPost(request):
         resizeImage(post.image2)
         resizeImage(post.image3)
 
-        messages.success(request, _('Your post has been saved'))
+        messages.success(request, _('You post has been submitted for admin approval'))
         return redirect('detailPost', post.slug)
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'create', 'id': 0})
 
@@ -42,10 +42,6 @@ def createPost(request):
 @login_required(login_url='loginForm')
 def updatePost(request, id):
     post = Post.objects.get(pk=id, user=request.user)
-
-    if post.published:
-        messages.error(request, _('Your post cannot be changed'))
-        return redirect('dashboard')
 
     form = PostForm(request.POST or None, instance=post, files=request.FILES or None)
     if form.is_valid():
@@ -58,7 +54,7 @@ def updatePost(request, id):
         resizeImage(post.image2)
         resizeImage(post.image3)
 
-        messages.success(request, _('Your post has been saved'))
+        messages.success(request, _('You post has been submitted for admin approval'))
         return redirect('dashboard')
 
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'update', 'id': id})
