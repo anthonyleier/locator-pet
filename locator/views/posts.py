@@ -71,7 +71,7 @@ def foundPost(request, id):
 
 @login_required(login_url='loginForm')
 def deletePost(request, id):
-    post = Post.objects.get(pk=id, published=False, user=request.user)
+    post = Post.objects.get(pk=id, user=request.user)
     post.delete()
     messages.success(request, _('Your post has been deleted'))
     return redirect('dashboard')
