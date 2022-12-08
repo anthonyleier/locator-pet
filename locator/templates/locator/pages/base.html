@@ -25,6 +25,7 @@
 
         <link rel="stylesheet" href="{% static 'locator/css/styles.css' %}">
         <link rel="stylesheet" href="{% static 'locator/css/navbar.css' %}">
+        <link rel="stylesheet" href="{% static 'locator/css/footer.css' %}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,5 +45,7 @@
         {% block content %}{% endblock content %}
 
         {% include 'locator/components/pagination.html' %}
+
+        {% include 'locator/components/footer.html' %}
     </body>
 </html>
