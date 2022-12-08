@@ -23,8 +23,8 @@
             <p>{{ post.description }}</p>
 
             <div class="user-info border shadow mt-5 mb-2 py-4">
-                <a href="https://wa.me/+55{{post.user.phone}}">
-                    <i class="bi bi-person-fill"></i> {{ post.user.get_full_name }} - <i class="bi bi-telephone-fill"></i> {{post.user.phone}}
+                <a href="https://wa.me/+55{{post.user.profile.phone}}">
+                    <i class="bi bi-person-fill"></i> {{ post.user.get_full_name }} - <i class="bi bi-telephone-fill"></i> {{post.user.profile.phone}}
                 </a>
             </div>
 
