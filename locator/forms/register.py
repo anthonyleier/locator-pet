@@ -35,7 +35,7 @@ class RegisterForm(forms.ModelForm):
             'min_length': _('Username must be at least 4 characters long.'),
             'max_length': _('Username must be a maximum of 150 characters.'),
         },
-        help_text=('Obligatoriness. 150 characters or less. Only letters, numbers and @/./+/-/_.'),
+        help_text=(_('Obligatoriness. 150 characters or less. Only letters, numbers and @/./+/-/_.')),
         label=_('Username')
     )
 

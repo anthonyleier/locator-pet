@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-07 16:23-0300\n"
+"POT-Creation-Date: 2022-12-08 13:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,6 +93,11 @@ msgstr "Usuário deve ter no mínimo 4 caracteres."
 #: .\locator\forms\register.py:36
 msgid "Username must be a maximum of 150 characters."
 msgstr "Usuário deve ter no máximo 150 caracteres."
+
+#: .\locator\forms\register.py:38
+msgid ""
+"Obligatoriness. 150 characters or less. Only letters, numbers and @/./+/-/_."
+msgstr "Obrigatório. 150 caracteres ou menos. Apenas letras, números e @/./+/-/_."
 
 #: .\locator\forms\register.py:39
 msgid "Username"
