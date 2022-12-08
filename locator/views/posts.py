@@ -35,7 +35,7 @@ def createPost(request):
         resizeImage(post.image3)
 
         messages.success(request, _('Your post has been saved'))
-        return redirect('dashboard')
+        return redirect('detailPost', post.slug)
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'create', 'id': 0})
 
 
