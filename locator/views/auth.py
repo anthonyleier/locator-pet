@@ -31,7 +31,7 @@ def registerAction(request):
         user.save()
 
         profile = Profile.objects.get(user=user)
-        profile.user.phone = request.POST['phone']
+        profile.phone = request.POST['phone']
         profile.save()
 
         messages.success(request, _('Your user has been successfully created'))
