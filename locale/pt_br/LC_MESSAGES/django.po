@@ -198,7 +198,7 @@ msgstr "Publicado"
 #: .\locator\templates\locator\pages\dashboard.html:46
 #: .\locator\templates\locator\pages\post.html:17
 msgid "Found"
-msgstr "Encontrei"
+msgstr "Encontrado"
 
 #: .\locator\templates\locator\pages\dashboard.html:30
 msgid "User"

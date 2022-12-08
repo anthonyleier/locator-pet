@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <article>
     <a href="{{ post.get_absolute_url }}">
         <div class="text-center shadow rounded pb-2 pt-3">
@@ -10,7 +12,13 @@
             <img src="{{ post.image1.url }}" class="cover" />
             {% endif %}
 
-            <h3 class="mt-3">{{ post.title }}</h3>
+            {% if post.found %}
+                <span class="btn btn-success btn-sm my-2">{% translate "Found" %}</span>
+            {% else %}
+                <span class="btn btn-warning btn-sm my-2">{% translate "Missing" %}</span>
+            {% endif %}
+
+            <h3>{{ post.title }}</h3>
             <p>{{ post.neighborhood }} - {{ post.city }}</p>
         </div>
     </a>
