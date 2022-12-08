@@ -43,7 +43,12 @@
                         <td>{{post.user}}</td>
                         <td><a href="{% url 'updatePost' post.id %}">📝</a></td>
                         <td><form action="{% url 'deletePost' post.id %}" method="POST" id="formDeletePost">{% csrf_token %}<button type="submit" class="not-a-button">❌</button></form></td>
-                        <td><form action="{% url 'foundPost' post.id %}" method='POST' id='formFoundPost'>{% csrf_token %}<button type="submit" class="btn btn-primary btn-sm">{% translate "Found" %}</button></form></td>
+
+                        {% if post.found %}
+                            <td><form action="{% url 'foundPost' post.id %}" method='POST' id='formFoundPost'>{% csrf_token %}<button type="submit" class="btn btn-primary btn-sm">{% translate "Found" %}</button></form></td>
+                        {% else %}
+                            <td><button class="btn btn-secondary btn-sm" disabled>{% translate "Found" %}</button></td>
+                        {% endif %}
                     </tr>
 
                 {% empty %}
