@@ -66,3 +66,8 @@ body {
         overflow-x: scroll;
     }
 }
+
+.photo {
+    width: 100%;
+    max-height: 300px;
+}
