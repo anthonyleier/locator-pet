@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-08 14:53-0300\n"
+"POT-Creation-Date: 2022-12-08 15:10-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,31 +30,31 @@ msgstr "Sua senha"
 msgid "Password must not be empty."
 msgstr "Senha não pode ser vazia."
 
-#: .\locator\forms\post.py:13
+#: .\locator\forms\post.py:15
 msgid "Missing dog"
 msgstr "Cachorro desaparecido"
 
-#: .\locator\forms\post.py:14
+#: .\locator\forms\post.py:16
 msgid "Title must not be empty."
 msgstr "Título não pode ser vazio."
 
-#: .\locator\forms\post.py:20
+#: .\locator\forms\post.py:22
 msgid "Description and facts"
 msgstr "Descrição e fatos relevantes"
 
-#: .\locator\forms\post.py:21
+#: .\locator\forms\post.py:23
 msgid "Description must not be empty."
 msgstr "Descrição não pode ser vazia."
 
-#: .\locator\forms\post.py:27
+#: .\locator\forms\post.py:29
 msgid "Ex.: Center"
 msgstr "Ex.: Centro"
 
-#: .\locator\forms\post.py:28
+#: .\locator\forms\post.py:30
 msgid "Neighborhood must not be empty."
 msgstr "Bairro não pode ser vazio."
 
-#: .\locator\forms\post.py:35
+#: .\locator\forms\post.py:37
 msgid "City must not be empty."
 msgstr "Cidade não pode ser vazia."
 
@@ -95,8 +95,10 @@ msgid "Username must be a maximum of 150 characters."
 msgstr "Usuário deve ter no máximo 150 caracteres."
 
 #: .\locator\forms\register.py:38
-msgid "Obligatoriness. 150 characters or less. Only letters, numbers and @/./+/-/_."
-msgstr "Obrigatório. 150 caracteres ou menos. Apenas letras, números e @/./+/-/_."
+msgid ""
+"Obligatoriness. 150 characters or less. Only letters, numbers and @/./+/-/_."
+msgstr ""
+"Obrigatório. 150 caracteres ou menos. Apenas letras, números e @/./+/-/_."
 
 #: .\locator\forms\register.py:39
 msgid "Username"
@@ -260,3 +262,15 @@ msgstr "Que notícia maravilhosa!"
 #: .\locator\views\posts.py:76
 msgid "Your post has been deleted"
 msgstr "Seu post foi deletado"
+
+#: .\utils\functions.py:20
+msgid "Unsupported file extension"
+msgstr "Extensão de arquivo não suportada"
+
+#: .\utils\functions.py:27
+msgid "Your password is too weak"
+msgstr "Sua senha é muito fraca"
+
+#: .\utils\functions.py:33
+msgid "This email are already in use"
+msgstr "Este email já está em uso"

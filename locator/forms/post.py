@@ -2,6 +2,8 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from locator.models import Post
 
+from utils.functions import verifyFileType
+
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -39,17 +41,20 @@ class PostForm(forms.ModelForm):
     image1 = forms.FileField(
         required=False,
         widget=forms.FileInput(attrs={'class': 'form-control'}),
-        label='Imagem 1'
+        label='Imagem 1',
+        validators=[verifyFileType]
     )
 
     image2 = forms.FileField(
         required=False,
         widget=forms.FileInput(attrs={'class': 'form-control'}),
-        label='Imagem 2'
+        label='Imagem 2',
+        validators=[verifyFileType]
     )
 
     image3 = forms.FileField(
         required=False,
         widget=forms.FileInput(attrs={'class': 'form-control'}),
-        label='Imagem 3'
+        label='Imagem 3',
+        validators=[verifyFileType]
     )
