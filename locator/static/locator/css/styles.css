@@ -71,3 +71,13 @@ body {
     width: 100%;
     max-height: 300px;
 }
+
+@media (max-width: 600px) {
+    .page {
+        font-size: 12vw;
+    }
+
+    .current-page {
+        font-size: 12vw;
+    }
+}
