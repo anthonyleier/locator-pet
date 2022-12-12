@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 from locator.models import Post
 from locator.forms.post import PostForm
-from utils.functions import resizeImage, makeSlug
+from utils.functions import resizeImage, makeSlug, sendNotification
 
 QTY_PER_PAGE = int(os.environ.get('QTY_PER_PAGE', 4))
 
@@ -35,6 +35,7 @@ def createPost(request):
         resizeImage(post.image3)
 
         messages.success(request, _('You post has been submitted for admin approval'))
+        sendNotification(post)
         return redirect('detailPost', post.slug)
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'create', 'id': 0})
 
@@ -55,6 +56,7 @@ def updatePost(request, id):
         resizeImage(post.image3)
 
         messages.success(request, _('You post has been submitted for admin approval'))
+        sendNotification(post)
         return redirect('dashboard')
 
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'update', 'id': id})
