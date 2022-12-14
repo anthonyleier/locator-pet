@@ -1,18 +1,19 @@
 {% load i18n %}
+{% load static %}
 
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
 
         <figure class="carousel-item active">
-            <img src="https://picsum.photos/1920/300" class="banner">
+            <img src="{% static 'locator/img/banner1.jpg' %}" class="banner">
         </figure>
 
         <figure class="carousel-item">
-            <img src="https://picsum.photos/1920/300" class="banner">
+            <img src="{% static 'locator/img/banner2.jpg' %}" class="banner">
         </figure>
 
         <figure class="carousel-item">
-            <img src="https://picsum.photos/1920/300" class="banner">
+            <img src="{% static 'locator/img/banner3.jpg' %}" class="banner">
         </figure>
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

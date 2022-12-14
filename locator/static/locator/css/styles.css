@@ -80,4 +80,8 @@ body {
     .current-page {
         font-size: 12vw;
     }
+
+    .carousel {
+        display: none;
+    }
 }
