@@ -98,10 +98,10 @@ USE_I18N = True
 USE_TZ = True
 LOCALE_PATHS = [BASE_DIR / 'locale']
 
-LANGUAGES = [
-    ('pt-br', _('Brazilian Portuguese')),
-    ('en', _('English')),
-]
+# LANGUAGES = [
+#     ('pt-br', _('Brazilian Portuguese')),
+#     ('en', _('English')),
+# ]
 
 
 # Static files (CSS, JavaScript, Images)
