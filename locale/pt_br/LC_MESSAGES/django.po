@@ -276,11 +276,11 @@ msgstr "Seu post foi deletado"
 
 #: .\project\settings.py:102
 msgid "Brazilian Portuguese"
-msgstr ""
+msgstr "Português Brasileiro"
 
 #: .\project\settings.py:103
 msgid "English"
-msgstr ""
+msgstr "Inglês"
 
 #: .\utils\functions.py:34
 msgid "Unsupported file extension"
