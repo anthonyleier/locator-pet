@@ -7,12 +7,12 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: joao.silva'}),
         error_messages={'required': _('Username must not be empty.')},
-        label='Usuário'
+        label=_('User')
     )
 
     password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Your password')}),
         error_messages={'required': _('Password must not be empty.')},
-        label='Senha'
+        label=_('Password')
     )

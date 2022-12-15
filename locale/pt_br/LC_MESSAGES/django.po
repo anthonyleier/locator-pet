@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-08 15:10-0300\n"
+"POT-Creation-Date: 2022-12-15 14:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,11 @@ msgstr ""
 msgid "Username must not be empty."
 msgstr "Usuário não pode ser vazio."
 
+#: .\locator\forms\login.py:10
+#: .\locator\templates\locator\pages\dashboard.html:30
+msgid "User"
+msgstr "Usuário"
+
 #: .\locator\forms\login.py:15 .\locator\forms\register.py:52
 msgid "Your password"
 msgstr "Sua senha"
@@ -29,6 +34,10 @@ msgstr "Sua senha"
 #: .\locator\forms\login.py:16 .\locator\forms\register.py:53
 msgid "Password must not be empty."
 msgstr "Senha não pode ser vazia."
+
+#: .\locator\forms\login.py:17 .\locator\forms\register.py:56
+msgid "Password"
+msgstr "Senha"
 
 #: .\locator\forms\post.py:15
 msgid "Missing dog"
@@ -124,10 +133,6 @@ msgstr ""
 "A senha deve conter no mínimo uma letra maiúscula, uma letra minúscula e um "
 "número. Com tamanho máximo de 8 caracteres."
 
-#: .\locator\forms\register.py:56
-msgid "Password"
-msgstr "Senha"
-
 #: .\locator\forms\register.py:61
 msgid "Your password again"
 msgstr "Sua senha novamente"
@@ -146,7 +151,8 @@ msgstr "Telefone não pode ser vazio."
 
 #: .\locator\forms\register.py:70
 msgid "Phone will be used for other users to contact you."
-msgstr "Telefone será usado por outros usuários para entrar em contato com você."
+msgstr ""
+"Telefone será usado por outros usuários para entrar em contato com você."
 
 #: .\locator\forms\register.py:71
 msgid "Phone"
@@ -156,13 +162,23 @@ msgstr "Telefone"
 msgid "Passwords must be the same."
 msgstr "As senhas precisam ser iguais."
 
+#: .\locator\templates\locator\components\banners.html:21
 #: .\locator\templates\locator\components\carousel.html:26
 msgid "Previous"
 msgstr "Anterior"
 
+#: .\locator\templates\locator\components\banners.html:26
 #: .\locator\templates\locator\components\carousel.html:31
 msgid "Next"
 msgstr "Próximo"
+
+#: .\locator\templates\locator\components\footer.html:4
+msgid "Developed by"
+msgstr "Desenvolvido por"
+
+#: .\locator\templates\locator\components\footer.html:5
+msgid "Suggestions and Support"
+msgstr "Sugestões e Suporte"
 
 #: .\locator\templates\locator\components\navbar.html:19
 msgid "Sign Up"
@@ -207,10 +223,6 @@ msgstr "Título"
 msgid "Published"
 msgstr "Publicado"
 
-#: .\locator\templates\locator\pages\dashboard.html:30
-msgid "User"
-msgstr "Usuário"
-
 #: .\locator\templates\locator\pages\dashboard.html:31
 msgid "Edit"
 msgstr "Editar"
@@ -227,7 +239,7 @@ msgstr "Você não tem posts"
 msgid "Save"
 msgstr "Salvar"
 
-#: .\locator\templates\locator\pages\home.html:10
+#: .\locator\templates\locator\pages\home.html:12
 msgid "No posts found"
 msgstr "Nenhum post encontrado"
 
@@ -251,26 +263,26 @@ msgstr "Seu usuário foi logado com sucesso"
 msgid "Invalid User"
 msgstr "Usuário inválido"
 
-#: .\locator\views\posts.py:37 .\locator\views\posts.py:57
+#: .\locator\views\posts.py:37 .\locator\views\posts.py:58
 msgid "You post has been submitted for admin approval"
 msgstr "Seu post foi enviado para aprovação pelo administrador"
 
-#: .\locator\views\posts.py:68
+#: .\locator\views\posts.py:70
 msgid "Wonderful news!"
 msgstr "Que notícia maravilhosa!"
 
-#: .\locator\views\posts.py:76
+#: .\locator\views\posts.py:78
 msgid "Your post has been deleted"
 msgstr "Seu post foi deletado"
 
-#: .\utils\functions.py:20
+#: .\utils\functions.py:34
 msgid "Unsupported file extension"
 msgstr "Extensão de arquivo não suportada"
 
-#: .\utils\functions.py:27
+#: .\utils\functions.py:41
 msgid "Your password is too weak"
 msgstr "Sua senha é muito fraca"
 
-#: .\utils\functions.py:33
+#: .\utils\functions.py:47
 msgid "This email are already in use"
 msgstr "Este email já está em uso"
