@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-15 14:36-0300\n"
+"POT-Creation-Date: 2022-12-15 15:06-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -249,6 +249,10 @@ msgstr "Última atualização"
 #: .\locator\templates\locator\pages\post.html:31
 msgid "at"
 msgstr "às"
+
+#: .\locator\views\auth.py:16
+msgid "Register"
+msgstr "Registrar"
 
 #: .\locator\views\auth.py:37
 msgid "Your user has been successfully created"

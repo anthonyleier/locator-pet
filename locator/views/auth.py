@@ -13,7 +13,7 @@ from locator.forms.register import RegisterForm
 def registerForm(request):
     form_data = request.session.get('form_data')
     form = RegisterForm(form_data)
-    context = {'form': form, 'type': 'Register', 'route': 'registerAction'}
+    context = {'form': form, 'type': _('Register'), 'route': 'registerAction'}
     return render(request, 'locator/pages/auth.html', context=context)
 
 
