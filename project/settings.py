@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from datetime import timedelta
 from django.contrib.messages import constants
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,11 +92,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'PT-BR'
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 LOCALE_PATHS = [BASE_DIR / 'locale']
+
+LANGUAGES = [
+    ('pt-br', _('Brazilian Portuguese')),
+    ('en', _('English')),
+]
 
 
 # Static files (CSS, JavaScript, Images)
