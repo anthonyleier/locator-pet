@@ -7,16 +7,11 @@
 <section class="w-100 d-flex flex-column align-items-center mt-3">
     <h1>Dashboard</h1>
 
-    <form action="{% url 'logoutAction' %}" method="POST">
+    <form action="{% url 'logoutAction' %}" method="POST" class="w-100 d-flex flex-row justify-content-around">
         {% csrf_token %}
+        <a href="{% url 'createPost' %}" class="btn btn-success btn-sm">{% translate "Create new post" %}</a>
+        <button type="submit" class="btn btn-danger btn-sm">{% translate "Logout" %}</button>
         <input type="hidden" name="username" value="{{request.user.username}}" />
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{request.user.username}}</button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'createPost' %}">{% translate "Create new post" %}</a></li>
-                <li><button type="submit" class="not-a-button dropdown-item">{% translate "Logout" %}</button></li>
-            </ul>
-        </div>
     </form>
 
     <div class="table-holder">
