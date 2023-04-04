@@ -26,3 +26,4 @@ sqlparse==0.4.3
 toml==0.10.2
 tomli==2.0.1
 tzdata==2022.4
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
