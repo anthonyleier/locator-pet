@@ -1,6 +1,6 @@
 # Django Structure in Production
 media/
-static/
+# static/
 gunicorn-error-log
 
 # Byte-compiled / optimized / DLL files
