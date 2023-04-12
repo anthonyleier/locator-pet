@@ -1,5 +1,3 @@
-# Django Structure in Production
-media/
 # static/
 gunicorn-error-log
 
