@@ -16,7 +16,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') == '1' else False
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
-CSRF_TRUSTED_ORIGINS = ['https://locatorpet.anthonycruz.com.br']
+CSRF_TRUSTED_ORIGINS = ['ec2-44-198-130-237.compute-1.amazonaws.com', 'http://locatorpet.anthonycruz.com.br', 'https://locatorpet.anthonycruz.com.br']
 
 # Application definition
 INSTALLED_APPS = [

@@ -1,5 +1,6 @@
-# static/
-gunicorn-error-log
+# Media and Static files
+media/
+static/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -55,7 +56,7 @@ coverage.xml
 cover/
 
 # Translations
-# *.mo
+*.mo
 *.pot
 
 # Django stuff:
