@@ -36,7 +36,7 @@ def createPost(request):
 
         messages.success(request, _('You post has been submitted for admin approval'))
         sendNotification(post)
-        return redirect('detailPost', post.slug)
+        return redirect('dashboard')
     return render(request, 'locator/pages/edit.html', context={'form': form, 'action': 'create', 'id': 0})
 
 
